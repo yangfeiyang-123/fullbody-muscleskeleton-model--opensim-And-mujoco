@@ -1,0 +1,66 @@
+{
+  "source_mujoco": "D:\\Main\\Research\\IEProgram\\Bad_Muskeleton\\Mimic\\MimicMSK_Model_mujoco\\body\\myofullbody.xml",
+  "checked_opensim": "D:\\Main\\Research\\IEProgram\\Bad_Muskeleton\\Mimic\\MimicMSK_Model_opensim\\MimicMSK_OpenSim.osim",
+  "body_count_checked": 101,
+  "mesh_count_checked": 102,
+  "wrap_count_checked": 253,
+  "marker_count_checked": 2021,
+  "tendon_count_checked": 424,
+  "muscle_count_checked": 416,
+  "equality_constraint_count_checked": 51,
+  "tendon_site_path_item_count": 1602,
+  "tendon_wrap_path_item_count": 270,
+  "converted_muscle_count": 416,
+  "converted_ligament_count": 8,
+  "converted_path_point_count": 1602,
+  "converted_path_wrap_count": 270,
+  "converted_coordinate_coupler_constraint_count": 49,
+  "missing_path_site_count": 0,
+  "missing_path_wrap_count": 0,
+  "max_body_position_error_m": 0.0,
+  "max_body_rotation_error_rad": 0.0,
+  "max_mesh_position_error_m": 0.0,
+  "max_mesh_rotation_error_rad": 0.0,
+  "max_wrap_position_error_m": 0.0,
+  "max_wrap_rotation_error_rad": 8.429369702178808e-08,
+  "max_marker_position_error_m": 0.0,
+  "worst_body_position": {
+    "body": "Full_Body",
+    "position_error_m": 0.0,
+    "rotation_error_rad": 0.0
+  },
+  "worst_body_rotation": {
+    "body": "Full_Body",
+    "position_error_m": 0.0,
+    "rotation_error_rad": 0.0
+  },
+  "worst_mesh_position": {
+    "body": "sacrum",
+    "mesh": "sacrum_geom_1",
+    "position_error_m": 0.0,
+    "rotation_error_rad": 0.0
+  },
+  "worst_mesh_rotation": {
+    "body": "sacrum",
+    "mesh": "sacrum_geom_1",
+    "position_error_m": 0.0,
+    "rotation_error_rad": 0.0
+  },
+  "worst_wrap_position": {
+    "body": "lumbar5",
+    "wrap": "back_cylinder_s_back_cylinder_s_IL_L1_r_1_sidesite",
+    "position_error_m": 0.0,
+    "rotation_error_rad": 0.0
+  },
+  "worst_wrap_rotation": {
+    "body": "n_4proxph_l",
+    "wrap": "Fourthpm_wrap_left_Fourthpm_site_EDC4_side_left",
+    "position_error_m": 0.0,
+    "rotation_error_rad": 8.429369702178808e-08
+  },
+  "worst_marker_position": {
+    "marker": "Ps_L1_VB_r_Ps_L1_VB_r_P2",
+    "body": "sacrum",
+    "position_error_m": 0.0
+  }
+}

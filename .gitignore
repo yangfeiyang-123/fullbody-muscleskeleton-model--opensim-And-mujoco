@@ -1,0 +1,23 @@
+# Ignore everything by default; this repo publishes only the model assets.
+*
+
+# Keep repository metadata and docs.
+!.gitignore
+!.gitattributes
+!README.md
+
+# OpenSim model package.
+!MimicMSK_Model_opensim/
+!MimicMSK_Model_opensim/**
+
+# MuJoCo model package.
+!MimicMSK_Model_mujoco/
+!MimicMSK_Model_mujoco/**
+
+# Generated caches, logs, and temporary OpenSim validation/output files.
+__pycache__/
+*.pyc
+*.log
+MimicMSK_Model_opensim/FK_results/
+MimicMSK_Model_opensim/validation/
+MimicMSK_Model_opensim/tmp_*.osim
