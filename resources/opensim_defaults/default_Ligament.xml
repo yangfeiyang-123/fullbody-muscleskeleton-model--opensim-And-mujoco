@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<OpenSimDocument Version="40500">
+	<Ligament name="default">
+		<!--List of components that this component owns and serializes.-->
+		<components />
+		<!--Flag indicating whether the force is applied or not. If true the forceis applied to the MultibodySystem otherwise the force is not applied.NOTE: Prior to OpenSim 4.0, this behavior was controlled by the 'isDisabled' property, where 'true' meant that force was not being applied. Thus, if 'isDisabled' is true, then 'appliesForce` is false.-->
+		<appliesForce>true</appliesForce>
+		<!--The path defines the length and lengthening speed of the PathSpring-->
+		<GeometryPath name="path">
+			<!--List of components that this component owns and serializes.-->
+			<components />
+			<!--Default appearance attributes for this AbstractGeometryPath.-->
+			<Appearance>
+				<!--Flag indicating whether the associated Geometry is visible or hidden.-->
+				<visible>true</visible>
+				<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
+				<opacity>1</opacity>
+				<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
+				<color>0.5 0.5 0.5</color>
+				<!--Visuals applied to surfaces associated with this Appearance.-->
+				<SurfaceProperties>
+					<!--The representation (1:Points, 2:Wire, 3:Shaded) used to display the object.-->
+					<representation>3</representation>
+				</SurfaceProperties>
+			</Appearance>
+			<!--The set of points defining the path-->
+			<PathPointSet>
+				<objects />
+				<groups />
+			</PathPointSet>
+			<!--The wrap objects that are associated with this path-->
+			<PathWrapSet>
+				<objects />
+				<groups />
+			</PathWrapSet>
+		</GeometryPath>
+		<!--resting length of the ligament-->
+		<resting_length>0</resting_length>
+		<!--force magnitude that scales the force-length curve-->
+		<pcsa_force>0</pcsa_force>
+		<!--Function representing the force-length behavior of the ligament-->
+		<SimmSpline name="force_length_curve">
+			<x> -5 0.99799999999999999822 0.99899999999999999911 1 1.1000000000000000888 1.1999999999999999556 1.3000000000000000444 1.3999999999999999112 1.5 1.6000000000000000888 1.6009999999999999787 1.6020000000000000906 5</x>
+			<y> 0 0 0 0 0.035000000000000003331 0.11999999999999999556 0.26000000000000000888 0.55000000000000004441 1.1699999999999999289 2 2 2 2</y>
+		</SimmSpline>
+	</Ligament>
+</OpenSimDocument>

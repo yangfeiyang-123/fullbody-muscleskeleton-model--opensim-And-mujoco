@@ -35,6 +35,7 @@ Python 3.10+ is expected.
 
 ```powershell
 pip install -r requirements.txt
+pip install -e .
 ```
 
 For real model-backed checks, also install:
@@ -43,6 +44,31 @@ For real model-backed checks, also install:
 - MuJoCo Python binding, usually `pip install mujoco`.
 
 The loader reports a clear error if either backend is missing.
+
+## Quick Test
+
+After cloning the repository, run the built-in smoke test first. It verifies the Python package, mapping parser, topology check, kinematics check and report writer without requiring OpenSim or MuJoCo runtime bindings.
+
+```powershell
+python -m unittest discover -s test -p "test_*.py"
+```
+
+For model-backed comparison, install the OpenSim Python API and MuJoCo binding, then run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File examples/run_compare.ps1
+```
+
+Reports are written under `results/equivalence_report/`, which is intentionally ignored by Git.
+
+## Repository Layout
+
+- `src/msk_equivalence/`: Python package and CLI implementation.
+- `test/`: smoke tests and all test-only files.
+- `configs/`: mapping template and generated mapping.
+- `examples/`: example commands and starter mapping.
+- `resources/opensim_defaults/`: OpenSim default XML snippets moved out of the repository root.
+- `results/`: recommended output location for generated reports.
 
 ## Mapping File
 

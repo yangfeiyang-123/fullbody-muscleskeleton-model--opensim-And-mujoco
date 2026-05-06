@@ -5,6 +5,20 @@
 !.gitignore
 !.gitattributes
 !README.md
+!requirements.txt
+!pyproject.toml
+
+# Equivalence comparison package and examples.
+!src/
+!src/**
+!configs/
+!configs/**
+!examples/
+!examples/**
+!resources/
+!resources/**
+!test/
+!test/**
 
 # OpenSim model package.
 !MimicMSK_Model_opensim/
@@ -16,8 +30,12 @@
 
 # Generated caches, logs, and temporary OpenSim validation/output files.
 __pycache__/
+**/__pycache__/
 *.pyc
 *.log
+test/_smoke_*/
+test/tmp*/
+results/
 MimicMSK_Model_opensim/FK_results/
 MimicMSK_Model_opensim/validation/
 MimicMSK_Model_opensim/tmp_*.osim

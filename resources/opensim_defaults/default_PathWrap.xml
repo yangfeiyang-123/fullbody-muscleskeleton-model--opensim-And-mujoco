@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<OpenSimDocument Version="40500">
+	<PathWrap name="default">
+		<!--List of components that this component owns and serializes.-->
+		<components />
+		<!--A WrapObject that this PathWrap interacts with.-->
+		<wrap_object></wrap_object>
+		<!--The wrapping method used to solve the path around the wrap object.-->
+		<method>hybrid</method>
+		<!--The range of indices to use to compute the path over the wrap object.-->
+		<range>-1 -1</range>
+	</PathWrap>
+</OpenSimDocument>

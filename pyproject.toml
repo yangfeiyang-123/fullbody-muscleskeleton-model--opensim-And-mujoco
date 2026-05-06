@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "msk-equivalence"
+version = "0.1.0"
+description = "OpenSim vs MuJoCo musculoskeletal model equivalence comparison tools."
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.23",
+  "pandas>=1.5",
+  "matplotlib>=3.6",
+  "PyYAML>=6.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

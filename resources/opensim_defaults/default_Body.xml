@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<OpenSimDocument Version="40500">
+	<Body name="default">
+		<!--List of components that this component owns and serializes.-->
+		<components />
+		<!--The geometry used to display the axes of this Frame.-->
+		<FrameGeometry name="frame_geometry">
+			<!--List of components that this component owns and serializes.-->
+			<components />
+			<!--Path to a Component that satisfies the Socket 'frame' of type Frame.-->
+			<socket_frame></socket_frame>
+			<!--Path to an output (channel) to satisfy the one-value Input 'transform' of type SimTK::Transform (description: The transform that positions the Geometry in Ground so it can be positioned. Note, either the Geometry is attached to a Frame OR the input transform can be supplied, but not both. ).-->
+			<input_transform></input_transform>
+			<!--Scale factors in X, Y, Z directions respectively.-->
+			<scale_factors>0.20000000000000001 0.20000000000000001 0.20000000000000001</scale_factors>
+			<!--Default appearance attributes for this Geometry-->
+			<Appearance>
+				<!--Flag indicating whether the associated Geometry is visible or hidden.-->
+				<visible>true</visible>
+				<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
+				<opacity>1</opacity>
+				<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
+				<color>1 1 1</color>
+				<!--Visuals applied to surfaces associated with this Appearance.-->
+				<SurfaceProperties>
+					<!--The representation (1:Points, 2:Wire, 3:Shaded) used to display the object.-->
+					<representation>3</representation>
+				</SurfaceProperties>
+			</Appearance>
+			<!--The radius of the arrow-shaft used to display the frame.-->
+			<display_radius>0.0040000000000000001</display_radius>
+		</FrameGeometry>
+		<!--List of geometry attached to this Frame. Note, the geometry are treated as fixed to the frame and they share the transform of the frame when visualized-->
+		<attached_geometry />
+		<!--Set of wrap objects fixed to this body that GeometryPaths can wrap over.This property used to be a member of Body but was moved up with the introduction of Frames.-->
+		<WrapObjectSet>
+			<!--List of components that this component owns and serializes.-->
+			<components />
+			<objects />
+			<groups />
+		</WrapObjectSet>
+		<!--The mass of the body (kg)-->
+		<mass>NaN</mass>
+		<!--The location (Vec3) of the mass center in the body frame.-->
+		<mass_center>0 0 0</mass_center>
+		<!--The elements of the inertia tensor (Vec6) as [Ixx Iyy Izz Ixy Ixz Iyz] measured about the mass_center and not the body origin.-->
+		<inertia>0 0 0 0 0 0</inertia>
+	</Body>
+</OpenSimDocument>

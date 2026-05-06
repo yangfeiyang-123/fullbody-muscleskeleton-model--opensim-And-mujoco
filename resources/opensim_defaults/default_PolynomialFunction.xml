@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<OpenSimDocument Version="40500">
+	<PolynomialFunction name="default">
+		<!--Coefficients of a polynomial function, from highest to lowest order.Polynomial order is n-1, where n is the number of coefficients.-->
+		<coefficients>1</coefficients>
+	</PolynomialFunction>
+</OpenSimDocument>

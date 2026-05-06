@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<OpenSimDocument Version="40500">
+	<CoordinateCouplerConstraint name="default">
+		<!--List of components that this component owns and serializes.-->
+		<components />
+		<!--Flag indicating whether the constraint is enforced or not.Enforced means that the constraint is active in subsequent dynamics realizations. NOTE: Prior to OpenSim 4.0, this behavior was controlled by the 'isDisabled' property, where 'true' meant the constraint was not being enforced. Thus, if 'isDisabled' is'true', then 'isEnforced' is false.-->
+		<isEnforced>true</isEnforced>
+		<!--Constraint function of generalized coordinates (to be specified) used to evaluate the constraint errors and their derivatives, and must valid to at least 2nd order. Constraint function must evaluate to zero when coordinates satisfy the constraint.-->
+		<coupled_coordinates_function />
+		<!--List of names of the right hand side (independent) coordinates. Note the constraint function above, must be able to handle multiple coordinate values if more than one coordinate name is provided.-->
+		<independent_coordinate_names></independent_coordinate_names>
+		<!--Name of the left-hand side (dependent) coordinate of the constraint coupling function.-->
+		<dependent_coordinate_name></dependent_coordinate_name>
+		<!--Scale factor for the coupling function.-->
+		<scale_factor>1</scale_factor>
+	</CoordinateCouplerConstraint>
+</OpenSimDocument>

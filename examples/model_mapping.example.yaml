@@ -1,0 +1,46 @@
+conventions:
+  length_unit: meter
+  mass_unit: kg
+  angle_unit: radian
+  forward_axis: TODO_confirm_model_specific
+  up_axis: TODO_confirm_model_specific
+  lateral_axis: TODO_confirm_model_specific
+  pelvis_root: free_root_expected
+
+thresholds:
+  moment_arm_fd_epsilon: 0.000001
+
+bodies:
+  - opensim: Full_Body
+    mujoco: Full Body
+  - opensim: sacrum
+    mujoco: sacrum
+  - opensim: lumbar5
+    mujoco: lumbar5
+
+coordinates:
+  - opensim: root_tx
+    mujoco: qpos[0]
+    sign_flip: false
+  - opensim: root_ty
+    mujoco: qpos[1]
+    sign_flip: false
+  - opensim: root_tz
+    mujoco: qpos[2]
+    sign_flip: false
+  - opensim: root_rx
+    mujoco: qpos[3]
+    sign_flip: false
+
+markers: []
+
+muscles: []
+
+contacts: []
+
+pose_samples:
+  - name: neutral
+    q: {}
+
+joint_sweep:
+  values: [-0.1, 0.0, 0.1]

@@ -1,0 +1,76 @@
+# Copy this file to configs/model_mapping.yaml and edit names to match your models.
+# The example values are placeholders. Do not assume they match your .osim or .xml.
+
+conventions:
+  length_unit: meter
+  mass_unit: kg
+  angle_unit: radian
+  forward_axis: TODO
+  up_axis: TODO
+  lateral_axis: TODO
+  pelvis_root: TODO
+
+thresholds:
+  position_warning_m: 0.01
+  position_fail_m: 0.05
+  muscle_length_warning_m: 0.005
+  moment_arm_warning_m: 0.005
+  moment_arm_fd_epsilon: 0.000001
+
+bodies:
+  - opensim: pelvis
+    mujoco: pelvis
+  - opensim: femur_r
+    mujoco: r_femur
+
+coordinates:
+  - opensim: hip_flexion_r
+    mujoco: hip_flexion_r
+    sign_flip: false
+  - opensim: knee_angle_r
+    mujoco: knee_angle_r
+    sign_flip: false
+
+markers:
+  - opensim: R.ASIS
+    mujoco: r_asis_site
+  - opensim: R.Knee
+    mujoco: r_knee_site
+
+muscles:
+  - opensim: iliopsoas_r
+    mujoco: iliopsoas_r
+  - opensim: hamstrings_r
+    mujoco: hamstrings_r
+
+contacts:
+  - opensim: heel_r_contact
+    mujoco:
+      geom: r_heel_geom
+      ground: floor
+  - opensim: toe_r_contact
+    mujoco:
+      geom: r_toe_geom
+      ground: floor
+
+pose_samples:
+  - name: neutral
+    q: {}
+  - name: hip_flexion_r_20deg
+    q:
+      hip_flexion_r: 0.34906585
+
+joint_sweep:
+  values: [-0.25, 0.0, 0.25]
+
+# Optional: limit moment-arm checks. If omitted, every mapped muscle-coordinate pair is sampled.
+moment_arm_pairs:
+  - muscle: iliopsoas_r
+    coordinate: hip_flexion_r
+
+# Optional inverse dynamics inputs.
+# motion_data:
+#   q: data/q.csv
+#   qdot: data/qdot.csv
+#   qddot: data/qddot.csv
+#   external_forces: data/grf.csv

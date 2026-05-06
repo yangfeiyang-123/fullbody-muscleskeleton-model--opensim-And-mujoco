@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<OpenSimDocument Version="40500">
+	<Thelen2003Muscle name="default">
+		<!--List of components that this component owns and serializes.-->
+		<components />
+		<!--Flag indicating whether the force is applied or not. If true the forceis applied to the MultibodySystem otherwise the force is not applied.NOTE: Prior to OpenSim 4.0, this behavior was controlled by the 'isDisabled' property, where 'true' meant that force was not being applied. Thus, if 'isDisabled' is true, then 'appliesForce` is false.-->
+		<appliesForce>true</appliesForce>
+		<!--Minimum allowed value for control signal. Used primarily when solving for control values.-->
+		<min_control>0.01</min_control>
+		<!--Maximum allowed value for control signal. Used primarily when solving for control values.-->
+		<max_control>1</max_control>
+		<!--The path of the actuator which defines length and lengthening speed.-->
+		<GeometryPath name="path">
+			<!--List of components that this component owns and serializes.-->
+			<components />
+			<!--Default appearance attributes for this AbstractGeometryPath.-->
+			<Appearance>
+				<!--Flag indicating whether the associated Geometry is visible or hidden.-->
+				<visible>true</visible>
+				<!--The opacity used to display the geometry between 0:transparent, 1:opaque.-->
+				<opacity>1</opacity>
+				<!--The color, (red, green, blue), [0, 1], used to display the geometry. -->
+				<color>0.80000000000000004 0.10000000000000001 0.10000000000000001</color>
+				<!--Visuals applied to surfaces associated with this Appearance.-->
+				<SurfaceProperties>
+					<!--The representation (1:Points, 2:Wire, 3:Shaded) used to display the object.-->
+					<representation>3</representation>
+				</SurfaceProperties>
+			</Appearance>
+			<!--The set of points defining the path-->
+			<PathPointSet>
+				<objects />
+				<groups />
+			</PathPointSet>
+			<!--The wrap objects that are associated with this path-->
+			<PathWrapSet>
+				<objects />
+				<groups />
+			</PathWrapSet>
+		</GeometryPath>
+		<!--The maximum force this actuator can produce.-->
+		<optimal_force>1</optimal_force>
+		<!--Maximum isometric force that the fibers can generate-->
+		<max_isometric_force>1000</max_isometric_force>
+		<!--Optimal length of the muscle fibers-->
+		<optimal_fiber_length>0.10000000000000001</optimal_fiber_length>
+		<!--Resting length of the tendon-->
+		<tendon_slack_length>0.20000000000000001</tendon_slack_length>
+		<!--Angle between tendon and fibers at optimal fiber length expressed in radians-->
+		<pennation_angle_at_optimal>0</pennation_angle_at_optimal>
+		<!--Maximum contraction velocity of the fibers, in optimal fiberlengths/second-->
+		<max_contraction_velocity>10</max_contraction_velocity>
+		<!--Compute muscle dynamics ignoring tendon compliance. Tendon is assumed to be rigid.-->
+		<ignore_tendon_compliance>false</ignore_tendon_compliance>
+		<!--Compute muscle dynamics ignoring activation dynamics. Activation is equivalent to excitation.-->
+		<ignore_activation_dynamics>false</ignore_activation_dynamics>
+		<!--Assumed activation level if none is assigned.-->
+		<default_activation>0.050000000000000003</default_activation>
+		<!--Assumed fiber length, unless otherwise assigned.-->
+		<default_fiber_length>0.10000000000000001</default_fiber_length>
+		<!--tendon strain at maximum isometric muscle force-->
+		<FmaxTendonStrain>0.040000000000000001</FmaxTendonStrain>
+		<!--passive muscle strain at maximum isometric muscle force-->
+		<FmaxMuscleStrain>0.59999999999999998</FmaxMuscleStrain>
+		<!--shape factor for Gaussian active muscle force-length relationship-->
+		<KshapeActive>0.45000000000000001</KshapeActive>
+		<!--exponential shape factor for passive force-length relationship-->
+		<KshapePassive>5</KshapePassive>
+		<!--force-velocity shape factor-->
+		<Af>0.25</Af>
+		<!--maximum normalized lengthening force-->
+		<Flen>1.3999999999999999</Flen>
+		<!--fv threshold where linear extrapolation is used-->
+		<fv_linear_extrap_threshold>0.94999999999999996</fv_linear_extrap_threshold>
+		<!--Maximum pennation angle, in radians-->
+		<maximum_pennation_angle>1.4706289056333368</maximum_pennation_angle>
+		<!--Activation time constant, in seconds-->
+		<activation_time_constant>0.014999999999999999</activation_time_constant>
+		<!--Deactivation time constant, in seconds-->
+		<deactivation_time_constant>0.050000000000000003</deactivation_time_constant>
+		<!--Lower bound on activation-->
+		<minimum_activation>0.01</minimum_activation>
+	</Thelen2003Muscle>
+</OpenSimDocument>
