@@ -1,64 +1,194 @@
-# Dynamics Equivalence Experiments
+# Level 3 and Level 4 Dynamics Equivalence Experiments
 
-The goal is to prove that OpenSim and MuJoCo are not only visually or kinematically similar, but produce the same dynamics under matched state and control inputs.
+This protocol defines the experiments required before claiming that `MimicMSK_OpenSim.osim` is dynamically equivalent to the MuJoCo `myofullbody.xml` model for RL training.
 
-## Required Gate Order
+The current repository passes Level 1 kinematics, Level 2 neutral muscle geometry, and the configured Level 3 static force/torque gates. Level 4 is not passed: the no-contact instant-acceleration smoke test currently fails by a large margin.
 
-1. Level 1 kinematics must pass: matched poses must produce the same body, marker/site and whole-body COM positions.
-2. Level 2 muscle geometry must pass: muscle-tendon lengths and independent-coordinate moment arms must match.
-3. Level 3 dynamics can then be trusted: inverse dynamics, muscle-generated torque and passive forces.
-4. Level 4 short rollouts can be used as behavior smoke tests.
+## Claim Map
 
-## State Adapter
+| Claim | Minimum evidence | Blocking checks |
+| --- | --- | --- |
+| L3 dynamic equivalence | Matched states produce matched inverse dynamics, muscle-generated generalized torques and passive generalized torques. | `inertial`, `inverse_dynamics`, `muscle_torque`, `passive_forces` |
+| L4 behavior equivalence | Matched initial states and controls produce bounded short-horizon rollout drift, and contact behavior is comparable under controlled probes. | `contact`, `forward_dynamics` |
 
-Every experiment must pass through a shared state adapter:
+Do not use long RL rollouts as the primary equivalence proof. Long rollouts amplify small numerical differences and are useful only after short-horizon gates are stable.
 
-- `q`: mapped independent coordinates plus dependent coordinates required by constraints;
-- `qdot`: matched generalized speeds;
-- `qddot`: only for inverse dynamics;
-- root pose: explicit conversion between OpenSim root Euler coordinates and MuJoCo freejoint position/quaternion;
-- contacts: explicitly disabled or enabled in both engines.
+## Required Adapters
 
-The adapter must reject samples that set only one side of a constrained coordinate pair.
+Every experiment must use the same adapter layer:
 
-## Experiment Set
+- `q`: independent OpenSim coordinates plus dependent coordinates required by constraints.
+- `qdot`: generalized speeds in the same coordinate order and sign convention.
+- `qddot`: required only for inverse dynamics.
+- root pose: explicit conversion between OpenSim root translation/Euler coordinates and MuJoCo freejoint position/quaternion.
+- controls: either generalized torques or muscle activations, never both unless the experiment says so.
+- contacts: explicitly disabled or explicitly enabled in both backends.
+- coordinate filtering: pass/fail gates use independent coordinates first; dependent coordinates require constraint-Jacobian projection.
 
-The configured plan is stored in `configs/model_mapping.yaml` under `dynamics_experiments`.
+The adapter must reject a sample if it sets only one side of a constrained coordinate pair.
 
-### Inverse Dynamics
+## Level 3: Dynamics Equivalence
 
-- `gravity_static_neutral`: zero velocity and acceleration, contact disabled. This isolates gravity, mass, COM, joint axes and torque sign conventions.
-- `sagittal_sinusoid_no_contact`: short smooth trajectory for hip, knee, ankle and lumbar coordinates. This tests inertia, Coriolis and velocity-dependent terms.
+### L3-ID-01: Static Gravity Inverse Dynamics
 
-Compare generalized torques on independent coordinates. Dependent coordinates should be validated through the constraint Jacobian, not by direct one-to-one torque comparison.
+- Config name: `gravity_static_neutral`
+- Purpose: isolate mass, COM, gravity direction, joint axes and torque sign conventions.
+- Inputs: neutral pose, zero velocity, zero acceleration, contacts disabled, activations disabled.
+- OpenSim computation: realize acceleration stage, run inverse dynamics on the same generalized state, export generalized torques.
+- MuJoCo computation: set `qpos`, `qvel`, `qacc=0`, call inverse dynamics, export `qfrc_inverse` projected to mapped independent coordinates.
+- Metrics: absolute torque error, relative torque error, sign consistency, worst coordinate.
+- Outputs: `inverse_dynamics_torque_error.csv`, `diagnostics/inverse_dynamics_worst_error.csv`.
+- Pass gate: max error <= `3 Nm` or relative error <= `5%`; warn above `1 Nm` or `2%`.
 
-### Muscle-Generated Torque
+### L3-ID-02: No-Contact Sagittal Trajectory Inverse Dynamics
 
-- `single_muscle_activation_sweep`: activate one muscle at a time at several activation values.
-- `antagonist_group_activation`: activate expected agonist/antagonist groups and compare net generalized torque direction and magnitude.
+- Config name: `sagittal_sinusoid_no_contact`
+- Purpose: test inertia, Coriolis and velocity-dependent terms.
+- Inputs: `configs/dynamics_samples/sagittal_sinusoid.csv`, contacts disabled.
+- Trajectory: smooth low-amplitude hip, knee, ankle and lumbar sinusoid with analytic `qdot` and `qddot`.
+- Metrics: time-series torque RMSE, max torque error, per-coordinate correlation.
+- Outputs: `inverse_dynamics_torque_error.csv`, `diagnostics/inverse_dynamics_timeseries_worst.csv`.
+- Pass gate: coordinate RMSE <= `3 Nm` or `5%`; correlation >= `0.98`.
 
-This gate should use the same activation ordering, activation dynamics assumptions and muscle parameter extraction on both backends.
+### L3-MT-01: Single Muscle Activation Sweep
 
-### Passive Forces
+- Config name: `single_muscle_activation_sweep`
+- Purpose: verify muscle force generation plus Level 2 moment arms muscle by muscle.
+- Inputs: neutral pose, zero velocity, activation values `[0.0, 0.25, 0.5, 1.0]`, contacts disabled.
+- OpenSim computation: set one muscle activation, hold all other activations at zero, compute generalized muscle contribution.
+- MuJoCo computation: set the matching actuator control/activation, evaluate actuator/tendon force and generalized contribution.
+- Metrics: muscle force error, generalized torque error on mapped independent coordinates, direction consistency.
+- Outputs: `muscle_generated_torque_error.csv`, `diagnostics/muscle_torque_worst_single_muscle.csv`.
+- Pass gate: torque error <= `3 Nm` or `10%`; warn above `1 Nm` or `5%`.
 
-- `passive_joint_grid`: zero activation, zero velocity, grid over representative joint limits.
+### L3-MT-02: Muscle Group Activation
 
-Compare passive generalized torque from passive muscle force, ligament force, damping, stiffness and joint-limit terms separately when the backend exposes them. If a backend only exposes total passive torque, record that limitation in the report.
+- Config name: `antagonist_group_activation`
+- Purpose: verify control ordering and net torque direction for coordinated RL actions.
+- Groups: hip flexors, hip extensors, knee extensors, ankle plantarflexors, and their left/right mirrors.
+- Inputs: neutral pose and two non-neutral poses after L3-ID-02 is stable.
+- Metrics: net generalized torque error, expected agonist/antagonist sign, top contributing muscles.
+- Outputs: `muscle_generated_torque_error.csv`, `diagnostics/muscle_torque_group_error.csv`.
+- Pass gate: net torque error <= `3 Nm` or `10%`; sign must match for dominant coordinates.
 
-### Forward Dynamics
+### L3-MT-03: Sparse Random Activation Vectors
 
-- `passive_no_contact_100ms`: zero controls, no contact, 100 ms.
-- `single_joint_torque_pulse_50ms`: matched generalized torque pulse, no contact, 50 ms.
-- `matched_activation_rollout_200ms`: matched activation profile, no contact, 200 ms.
+- Purpose: catch actuator indexing mistakes that single-muscle sweeps can miss.
+- Inputs: fixed random seed, 20 sparse activation vectors, 5 to 10 active muscles each, contacts disabled.
+- Metrics: full independent-coordinate generalized torque RMSE and correlation.
+- Outputs: `muscle_generated_torque_error.csv`, `diagnostics/muscle_torque_random_vectors.csv`.
+- Pass gate: correlation >= `0.98`; max dominant-coordinate error <= `10%` or `3 Nm`.
 
-Forward rollout thresholds must be short-horizon thresholds. Long rollouts are not a strict equivalence proof because small numerical differences can diverge.
+### L3-PF-01: Passive Joint Grid
 
-## Suggested Acceptance Thresholds
+- Config name: `passive_joint_grid`
+- Purpose: compare passive muscle, ligament, stiffness, damping and joint-limit forces.
+- Inputs: `configs/dynamics_samples/passive_joint_grid.csv`, zero activation, zero velocity, contacts disabled.
+- Metrics: total passive generalized torque error, component errors when both backends expose components.
+- Outputs: `passive_force_comparison.csv`, `ligament_comparison.csv`, `diagnostics/passive_force_worst_error.csv`.
+- Pass gate: passive torque error <= `2 Nm` or `10%`; warn above `0.5 Nm` or `5%`.
 
-- Inverse dynamics torque: warn at 2 percent relative error or 1 Nm absolute error; fail at 5 percent or 3 Nm.
-- Muscle-generated torque: warn at 5 percent relative error or 1 Nm; fail at 10 percent or 3 Nm.
-- Passive torque: warn at 5 percent relative error or 0.5 Nm; fail at 10 percent or 2 Nm.
-- Forward COM drift: warn at 5 mm over 100 ms; fail at 20 mm.
-- Forward coordinate drift: warn at 0.01 rad or 2 mm; fail at 0.05 rad or 10 mm.
+### L3-PF-02: Passive Velocity Sweep
 
-These thresholds should be tightened after Level 2 geometry passes and backend integration details are confirmed.
+- Purpose: isolate damping and force-velocity passive terms.
+- Inputs: neutral and joint-limit poses, `qdot` values `[-1.0, -0.5, 0.5, 1.0] rad/s` on one coordinate at a time, zero activation.
+- Metrics: damping/passive velocity torque slope, sign consistency.
+- Outputs: `passive_force_comparison.csv`, `diagnostics/passive_velocity_sweep.csv`.
+- Pass gate: slope correlation >= `0.98`; sign must match.
+
+## Level 4: Behavior Equivalence
+
+### L4-C-01: Contact Inventory and Parameter Review
+
+- Config source: `contacts` in `configs/model_mapping.yaml`.
+- Purpose: identify whether OpenSim and MuJoCo contact pairs have comparable geometry, friction, stiffness and damping.
+- Metrics: missing contact mapping count, geometry type mismatch, friction mismatch, normal stiffness/damping mismatch.
+- Outputs: `contact_model_comparison.csv`, `contact_notes.md`.
+- Pass gate: all RL-relevant contacts mapped; unsupported pairs explicitly excluded.
+
+### L4-C-02: Contact Probe Grid
+
+- Purpose: compare normal and tangential contact behavior under controlled penetrations and sliding velocities.
+- Inputs: `configs/dynamics_samples/contact_probe_grid.csv`.
+- Probes: heel/toe/forefoot against ground, penetration depths `[1, 2, 5, 10] mm`, sliding speeds `[0.0, 0.1, 0.5] m/s`.
+- Metrics: normal force error, friction force error, contact point, center of pressure, penetration depth.
+- Outputs: `contact_behavior_comparison.csv`, `diagnostics/contact_probe_worst_error.csv`.
+- Pass gate: normal force error <= `15%`, friction direction must match, contact point error <= `2 cm`.
+
+### L4-FD-01: Passive No-Contact Rollout
+
+- Config name: `passive_no_contact_100ms`
+- Purpose: smoke-test gravity, inertia and passive forces without contact discontinuities.
+- Inputs: neutral pose, zero velocity, zero activation, contacts disabled, horizon `0.1 s`, dt `0.001 s`.
+- Metrics: COM drift error, root pose error, independent `q/qdot` drift.
+- Outputs: `forward_dynamics_smoke_test.csv`, `diagnostics/forward_no_contact_drift.csv`.
+- Pass gate: COM drift <= `20 mm`; coordinate drift <= `0.05 rad` or `10 mm`; warn above `5 mm` or `0.01 rad`.
+
+Current executable precursor: `passive_no_contact_instant_acceleration` compares t=0 independent-coordinate `qacc` before running a long rollout. This gate currently fails: worst error is about `4699 rad/s^2` at `mtp_angle_r`, with 59 of 73 evaluated independent coordinates above the fail threshold. Do not trust long Level 4 rollouts until this acceleration gate passes.
+
+### L4-FD-02: Single Joint Torque Pulse
+
+- Config name: `single_joint_torque_pulse_50ms`
+- Purpose: validate acceleration response under matched generalized forces.
+- Inputs: neutral pose, contacts disabled, 50 ms torque pulses on hip, knee and ankle.
+- Metrics: `q`, `qdot`, and coordinate acceleration response error.
+- Outputs: `forward_dynamics_smoke_test.csv`, `diagnostics/forward_torque_pulse_error.csv`.
+- Pass gate: coordinate drift <= `0.03 rad` over 50 ms; velocity response correlation >= `0.98`.
+
+### L4-FD-03: Matched Activation Rollout
+
+- Config name: `matched_activation_rollout_200ms`
+- Purpose: test short-horizon muscle-driven behavior after Level 3 muscle torque passes.
+- Inputs: `configs/dynamics_samples/matched_activation_step.csv`, contacts disabled, horizon `0.2 s`.
+- Metrics: COM drift, independent coordinate drift, muscle-tendon length drift, generalized torque drift.
+- Outputs: `forward_dynamics_smoke_test.csv`, `diagnostics/forward_activation_rollout_error.csv`.
+- Pass gate: COM drift <= `30 mm`; coordinate drift <= `0.05 rad`; muscle-length drift <= `5 mm`.
+
+### L4-FD-04: Contact Drop and Standing Smoke Test
+
+- Purpose: behavior-level contact gate after no-contact forward dynamics passes.
+- Inputs: low-height foot/whole-body drop states, zero controls and simple standing activations.
+- Metrics: ground reaction force, contact timing, contact impulse, COM bounce height, foot slip.
+- Outputs: `contact_behavior_comparison.csv`, `forward_dynamics_smoke_test.csv`, `diagnostics/contact_rollout_error.csv`.
+- Pass gate: GRF impulse error <= `20%`; contact timing error <= `10 ms`; foot slip direction must match.
+
+## Run Order
+
+| Stage | Runs | Go/no-go gate |
+| --- | --- | --- |
+| S0 adapter sanity | root conversion, coordinate order, activation order, contact enable/disable | no unmapped independent coordinate used by experiments |
+| S1 Level 3 static | L3-ID-01 | torque sign and gravity terms pass before trajectory tests |
+| S2 Level 3 trajectory | L3-ID-02, L3-PF-01, L3-PF-02 | inverse/passive torque gates pass |
+| S3 Level 3 muscle | L3-MT-01, L3-MT-02, L3-MT-03 | muscle torque gates pass |
+| S4 Level 4 no contact | L4-FD-01, L4-FD-02, L4-FD-03 | short no-contact rollouts pass |
+| S5 Level 4 contact | L4-C-01, L4-C-02, L4-FD-04 | contact probes and contact rollouts pass |
+
+If a run fails, fix the lowest-level failing cause first. For example, do not tune contact parameters while L3 inverse dynamics still has a gravity torque sign mismatch.
+
+## Data Files
+
+Sample input templates live in `configs/dynamics_samples/`:
+
+- `sagittal_sinusoid.csv`: trajectory samples for inverse dynamics.
+- `passive_joint_grid.csv`: passive pose grid for passive-force checks.
+- `matched_activation_step.csv`: activation profile for muscle-driven forward rollout.
+- `single_joint_torque_pulse.csv`: generalized torque pulse specification.
+- `contact_probe_grid.csv`: prescribed contact penetration/sliding probes.
+
+Dense production versions should be generated from these templates before enabling pass/fail gates in CI.
+
+## Report Status Rules
+
+Level 3 can be `passed` only when:
+
+- `inertial`, `inverse_dynamics`, `muscle_torque` and `passive_forces` are all `passed`;
+- every check writes numeric error CSVs, not only plan files;
+- dependent-coordinate diagnostics are either constraint-projected or explicitly excluded from gates.
+
+Level 4 can be `passed` only when:
+
+- Level 3 is already `passed`;
+- contact probes pass for RL-relevant contact pairs;
+- short no-contact and contact rollouts pass under matched initial states and controls.
+
+At the current state, the report must keep Level 4 as `failed`: the acceleration gate is executable and exposes a real mismatch, not a missing implementation.

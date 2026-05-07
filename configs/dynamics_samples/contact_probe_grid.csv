@@ -1,0 +1,8 @@
+probe,body_or_geom,penetration_m,sliding_speed_mps,normal_direction,contacts
+heel_r_ground,calcn_r,0.001,0.0,+y,enabled
+heel_r_ground,calcn_r,0.002,0.0,+y,enabled
+heel_r_ground,calcn_r,0.005,0.1,+y,enabled
+toe_r_ground,toes_r,0.001,0.0,+y,enabled
+toe_r_ground,toes_r,0.002,0.1,+y,enabled
+heel_l_ground,calcn_l,0.001,0.0,+y,enabled
+toe_l_ground,toes_l,0.001,0.0,+y,enabled

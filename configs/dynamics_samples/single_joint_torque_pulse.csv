@@ -1,0 +1,13 @@
+time_s,coordinate,torque_nm,contacts
+0.000,hip_flexion_r,0.0,disabled
+0.005,hip_flexion_r,20.0,disabled
+0.025,hip_flexion_r,20.0,disabled
+0.030,hip_flexion_r,0.0,disabled
+0.000,knee_angle_r,0.0,disabled
+0.005,knee_angle_r,20.0,disabled
+0.025,knee_angle_r,20.0,disabled
+0.030,knee_angle_r,0.0,disabled
+0.000,ankle_angle_r,0.0,disabled
+0.005,ankle_angle_r,10.0,disabled
+0.025,ankle_angle_r,10.0,disabled
+0.030,ankle_angle_r,0.0,disabled

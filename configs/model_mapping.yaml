@@ -13,6 +13,19 @@ conventions:
   up_axis: TODO_confirm_OpenSim_gravity_is_0_-9.80665_0
   lateral_axis: TODO_confirm
   pelvis_root: MuJoCo freejoint root; OpenSim converted root coordinates include translations and Euler rotations
+frame_alignment:
+  convention: OpenSim ground is y-up; MuJoCo world is z-up.
+  opensim_to_mujoco_rotation:
+  - - 1.0
+    - 0.0
+    - 0.0
+  - - 0.0
+    - 0.0
+    - -1.0
+  - - 0.0
+    - 1.0
+    - 0.0
+  note: This maps OpenSim vectors into the MuJoCo world frame, so OpenSim gravity [0, -g, 0] maps to MuJoCo gravity [0, 0, -g].
 thresholds:
   position_warning_m: 0.01
   position_fail_m: 0.05
@@ -25,6 +38,22 @@ thresholds:
   moment_arm_correlation_fail: 0.9
   moment_arm_fd_epsilon: 1.0e-06
   moment_arm_gate_sign_warnings: false
+  inverse_dynamics_warning_nm: 1.0
+  inverse_dynamics_fail_nm: 3.0
+  inverse_dynamics_warning_rel: 0.02
+  inverse_dynamics_fail_rel: 0.05
+  inverse_dynamics_relative_reference_floor_nm: 1.0
+  muscle_force_warning_rel: 0.05
+  muscle_force_fail_rel: 0.10
+  muscle_force_warning_n: 1.0
+  muscle_force_fail_n: 3.0
+  muscle_force_relative_reference_floor_n: 1.0
+  passive_force_warning_rel: 0.05
+  passive_force_fail_rel: 0.10
+  passive_force_warning_n: 1.0
+  passive_force_fail_n: 3.0
+  passive_force_relative_reference_floor_n: 1.0
+  passive_force_use_active_reference: true
 bodies:
 - opensim: Full_Body
   mujoco: Full Body
@@ -5612,6 +5641,14 @@ dynamics_experiments:
     - ankle_plantarflexors
     compare: net_generalized_torque
     purpose: Verify multi-muscle control ordering and grouped torque direction.
+  - name: sparse_random_activation_vectors
+    q_sample: neutral
+    seed: 20260507
+    vector_count: 20
+    active_muscles_per_vector: 5-10
+    contacts: disabled
+    compare: generalized_muscle_torque_independent_coordinates
+    purpose: Catch actuator indexing and control-ordering errors that single-muscle sweeps can miss.
   passive_forces:
   - name: passive_joint_grid
     q_samples: configs/dynamics_samples/passive_joint_grid.csv
@@ -5619,6 +5656,17 @@ dynamics_experiments:
     activation: zero
     compare: passive_generalized_torque
     purpose: Verify passive muscle, ligament, damping and joint-limit forces before RL rollouts.
+  - name: passive_velocity_sweep
+    q_samples: configs/dynamics_samples/passive_joint_grid.csv
+    qdot_values:
+    - -1.0
+    - -0.5
+    - 0.5
+    - 1.0
+    activation: zero
+    contacts: disabled
+    compare: passive_velocity_dependent_generalized_torque
+    purpose: Isolate damping and force-velocity passive terms.
   forward_dynamics:
   - name: passive_no_contact_100ms
     horizon_s: 0.1
@@ -5644,6 +5692,7 @@ dynamics_experiments:
     - q_independent
     - qdot_independent
     purpose: Validate coordinate-level accelerations under matched generalized forces.
+    input_profile: configs/dynamics_samples/single_joint_torque_pulse.csv
   - name: matched_activation_rollout_200ms
     horizon_s: 0.2
     dt_s: 0.001
@@ -5655,6 +5704,17 @@ dynamics_experiments:
     - qdot_independent
     - muscle_tendon_length
     purpose: Validate short-horizon muscle-driven behavior after Level 2 geometry passes.
+  - name: contact_drop_standing_smoke
+    horizon_s: 0.15
+    dt_s: 0.001
+    contact_probe_grid: configs/dynamics_samples/contact_probe_grid.csv
+    contacts: enabled
+    compare:
+    - ground_reaction_force
+    - contact_timing
+    - contact_impulse
+    - foot_slip
+    purpose: Validate contact behavior only after no-contact Level 4 rollouts pass.
 moment_arm_pairs:
 - muscle: Ps_L1_VB_r
   coordinate: flex_extension

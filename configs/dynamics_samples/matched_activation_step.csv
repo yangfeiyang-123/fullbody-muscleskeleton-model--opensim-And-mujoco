@@ -1,0 +1,6 @@
+time_s,activation_mode,activation_value,muscle_group,contacts
+0.000,all_zero,0.0,none,disabled
+0.050,group_step,0.2,ankle_plantarflexors,disabled
+0.100,group_step,0.4,ankle_plantarflexors,disabled
+0.150,group_step,0.4,knee_extensors,disabled
+0.200,group_step,0.2,hip_extensors,disabled
