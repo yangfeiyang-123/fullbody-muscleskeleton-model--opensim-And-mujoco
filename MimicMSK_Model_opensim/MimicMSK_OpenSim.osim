@@ -8671,7 +8671,7 @@
             </Coordinate>
             <Coordinate name="root_ty">
               <components />
-              <default_value>0</default_value>
+              <default_value>0.825</default_value>
               <default_speed_value>0</default_speed_value>
               <range>-100 100</range>
               <clamped>false</clamped>
@@ -8693,7 +8693,7 @@
             </Coordinate>
             <Coordinate name="root_rx">
               <components />
-              <default_value>0</default_value>
+              <default_value>-1.5707963</default_value>
               <default_speed_value>0</default_speed_value>
               <range>-6.2831853 6.2831853</range>
               <clamped>false</clamped>

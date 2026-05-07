@@ -5560,6 +5560,9 @@ contacts:
 pose_samples:
 - name: neutral
   q: {}
+  q_opensim:
+    root_ty: 0.0
+    root_rx: 0.0
 joint_sweep:
   values:
   - 0.0

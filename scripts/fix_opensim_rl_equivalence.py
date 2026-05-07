@@ -92,11 +92,11 @@ def sync_body_inertials(text: str) -> tuple[str, int]:
 def main() -> None:
     text = OSIM.read_text()
 
-    # MuJoCo RL uses the MJCF root pose directly. The converted OpenSim model
-    # had GUI-only standing defaults that shifted and rotated the whole body.
+    # Keep the OpenSim default pose usable in the OpenSim GUI. MuJoCo/RL
+    # alignment is applied by side-specific pose samples in model_mapping.yaml.
     root_updates = {
-        "root_ty": "0",
-        "root_rx": "0",
+        "root_ty": "0.825",
+        "root_rx": "-1.5707963",
     }
     for name, value in root_updates.items():
         text, count = replace_coordinate_default(text, name, value)

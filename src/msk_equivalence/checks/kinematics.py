@@ -12,7 +12,11 @@ from msk_equivalence.utils import norm_error, rmse, status_from_errors, write_cs
 def _pose_values(sample: dict[str, Any], mapping: MappingConfig, side: str) -> dict[str, float]:
     raw_q = sample.get("q", {})
     if not isinstance(raw_q, dict):
-        return {}
+        raw_q = {}
+    side_q = sample.get(f"q_{side}", {})
+    if not isinstance(side_q, dict):
+        side_q = {}
+    raw_q = {**raw_q, **side_q}
     values: dict[str, float] = {}
     for coord in mapping.coordinates:
         oname = mapping.side_name(coord, "opensim")
