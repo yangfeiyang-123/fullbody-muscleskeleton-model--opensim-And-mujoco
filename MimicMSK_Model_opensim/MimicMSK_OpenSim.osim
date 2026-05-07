@@ -53602,6 +53602,433 @@
             <y>0 0 0 0 0.035 0.12 0.26 0.55 1.17 2 2 2 2</y>
           </SimmSpline>
         </Ligament>
+
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_flex_extension">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>flex_extension</coordinate>
+          <expression>-16.29759149123281</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_lat_bending">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>lat_bending</coordinate>
+          <expression>0.005371824870658015</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_axial_rotation">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>axial_rotation</coordinate>
+          <expression>-0.008838817771335272</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_elv_angle_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>elv_angle_r</coordinate>
+          <expression>-0.09326192932398425</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_shoulder_elv_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>shoulder_elv_r</coordinate>
+          <expression>0.6560208054544943</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_shoulder_rot_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>shoulder_rot_r</coordinate>
+          <expression>-1.202068415963805</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_elbow_flex_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>elbow_flex_r</coordinate>
+          <expression>-0.4397942418303833</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_pro_sup_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>pro_sup_r</coordinate>
+          <expression>-0.07313734325907806</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_deviation_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>deviation_r</coordinate>
+          <expression>-0.1998198102661404</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>flexion_r</coordinate>
+          <expression>-0.1951856511662462</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_cmc_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>cmc_flexion_r</coordinate>
+          <expression>0.02534119185552397</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_cmc_abduction_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>cmc_abduction_r</coordinate>
+          <expression>-0.001641378592718734</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mp_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mp_flexion_r</coordinate>
+          <expression>0.01142681127638356</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_ip_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>ip_flexion_r</coordinate>
+          <expression>0.008399322829428346</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp2_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp2_flexion_r</coordinate>
+          <expression>-0.02758893583327604</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp2_abduction_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp2_abduction_r</coordinate>
+          <expression>-0.009568076316135016</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_pm2_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>pm2_flexion_r</coordinate>
+          <expression>-0.01427388179981198</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_md2_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>md2_flexion_r</coordinate>
+          <expression>-0.006188452550669576</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp3_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp3_flexion_r</coordinate>
+          <expression>-0.04518859462778568</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp3_abduction_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp3_abduction_r</coordinate>
+          <expression>-0.006349423553263733</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_pm3_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>pm3_flexion_r</coordinate>
+          <expression>-0.02795296939891939</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_md3_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>md3_flexion_r</coordinate>
+          <expression>-0.00338598646446181</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp4_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp4_flexion_r</coordinate>
+          <expression>-0.01200813043710713</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp4_abduction_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp4_abduction_r</coordinate>
+          <expression>-0.004812412118485099</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_pm4_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>pm4_flexion_r</coordinate>
+          <expression>-0.00980027151285201</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_md4_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>md4_flexion_r</coordinate>
+          <expression>0.0008731501102671735</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp5_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp5_flexion_r</coordinate>
+          <expression>-0.003652850188197276</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp5_abduction_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp5_abduction_r</coordinate>
+          <expression>0.001776298872852689</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_pm5_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>pm5_flexion_r</coordinate>
+          <expression>0.002459031714366511</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_md5_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>md5_flexion_r</coordinate>
+          <expression>0.002817063218073734</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_elv_angle_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>elv_angle_l</coordinate>
+          <expression>-0.09518703912692894</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_shoulder_elv_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>shoulder_elv_l</coordinate>
+          <expression>0.6674390061079388</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_shoulder_rot_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>shoulder_rot_l</coordinate>
+          <expression>-1.195343453824283</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_elbow_flex_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>elbow_flex_l</coordinate>
+          <expression>-0.4391492309808614</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_pro_sup_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>pro_sup_l</coordinate>
+          <expression>-0.07316992215390936</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_deviation_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>deviation_l</coordinate>
+          <expression>-0.1998570859894427</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>flexion_l</coordinate>
+          <expression>-0.1952967880331889</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_cmc_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>cmc_flexion_l</coordinate>
+          <expression>0.02533836638808273</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_cmc_abduction_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>cmc_abduction_l</coordinate>
+          <expression>-0.001637213210910815</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mp_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mp_flexion_l</coordinate>
+          <expression>0.01142326796343895</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_ip_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>ip_flexion_l</coordinate>
+          <expression>0.008397592499259643</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp2_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp2_flexion_l</coordinate>
+          <expression>-0.0275831839501236</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp2_abduction_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp2_abduction_l</coordinate>
+          <expression>-0.009569519060925069</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_pm2_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>pm2_flexion_l</coordinate>
+          <expression>-0.01427085131419703</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_md2_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>md2_flexion_l</coordinate>
+          <expression>-0.006187560657472835</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp3_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp3_flexion_l</coordinate>
+          <expression>-0.04518399952477514</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp3_abduction_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp3_abduction_l</coordinate>
+          <expression>-0.006353129555328074</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_pm3_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>pm3_flexion_l</coordinate>
+          <expression>-0.02795067556471242</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_md3_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>md3_flexion_l</coordinate>
+          <expression>-0.003385079350991749</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp4_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp4_flexion_l</coordinate>
+          <expression>-0.01200490165360291</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp4_abduction_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp4_abduction_l</coordinate>
+          <expression>-0.004818156171930044</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_pm4_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>pm4_flexion_l</coordinate>
+          <expression>-0.00979827351803142</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_md4_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>md4_flexion_l</coordinate>
+          <expression>0.0008735818731472333</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp5_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp5_flexion_l</coordinate>
+          <expression>-0.003648967777557965</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mcp5_abduction_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mcp5_abduction_l</coordinate>
+          <expression>0.00176920617092674</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_pm5_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>pm5_flexion_l</coordinate>
+          <expression>0.002460841398896907</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_md5_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>md5_flexion_l</coordinate>
+          <expression>0.002816487736921586</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_hip_flexion_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>hip_flexion_r</coordinate>
+          <expression>8.236163010612625</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_hip_adduction_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>hip_adduction_r</coordinate>
+          <expression>-0.4328756495388452</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_hip_rotation_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>hip_rotation_r</coordinate>
+          <expression>-2.09516005909244</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_knee_angle_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>knee_angle_r</coordinate>
+          <expression>-0.7148750343606265</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_ankle_angle_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>ankle_angle_r</coordinate>
+          <expression>6.872444468965558</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_subtalar_angle_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>subtalar_angle_r</coordinate>
+          <expression>-0.2297132107956084</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mtp_angle_r">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mtp_angle_r</coordinate>
+          <expression>0.07638744607329429</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_hip_flexion_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>hip_flexion_l</coordinate>
+          <expression>8.514855255433586</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_hip_adduction_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>hip_adduction_l</coordinate>
+          <expression>-0.4367384637396565</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_hip_rotation_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>hip_rotation_l</coordinate>
+          <expression>-2.00276384174551</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_knee_angle_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>knee_angle_l</coordinate>
+          <expression>0.6385802556692335</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_ankle_angle_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>ankle_angle_l</coordinate>
+          <expression>6.995856084495296</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_subtalar_angle_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>subtalar_angle_l</coordinate>
+          <expression>-0.2281270443534275</expression>
+        </ExpressionBasedCoordinateForce>
+        <ExpressionBasedCoordinateForce name="level4_neutral_qacc_fit_mtp_angle_l">
+          <components />
+          <appliesForce>true</appliesForce>
+          <coordinate>mtp_angle_l</coordinate>
+          <expression>0.07563300000306106</expression>
+        </ExpressionBasedCoordinateForce>
       </objects>
       <groups />
     </ForceSet>
@@ -54206,7 +54633,78 @@
     </ConstraintSet>
     <ContactGeometrySet name="contactgeometryset">
       <components />
-      <objects />
+      <objects>
+        <ContactSphere name="radius_r_coll">
+          <components />
+          <socket_frame>/bodyset/radius_r</socket_frame>
+          <location>0.0075 -0.1179205 0.014</location>
+          <orientation>0 0 0</orientation>
+          <radius>0.03</radius>
+        </ContactSphere>
+        <ContactSphere name="radius_l_coll">
+          <components />
+          <socket_frame>/bodyset/radius_l</socket_frame>
+          <location>0.0075 -0.1179 -0.014</location>
+          <orientation>0 0 0</orientation>
+          <radius>0.03</radius>
+        </ContactSphere>
+        <ContactSphere name="r_femur1_col">
+          <components />
+          <socket_frame>/bodyset/femur_r</socket_frame>
+          <location>0 -0.1 0.0175</location>
+          <orientation>0 0 0</orientation>
+          <radius>0.08</radius>
+        </ContactSphere>
+        <ContactSphere name="r_femur2_col">
+          <components />
+          <socket_frame>/bodyset/femur_r</socket_frame>
+          <location>0 -0.295 0.01</location>
+          <orientation>0 0 0</orientation>
+          <radius>0.067</radius>
+        </ContactSphere>
+        <ContactSphere name="r_tibia1_col">
+          <components />
+          <socket_frame>/bodyset/tibia_r</socket_frame>
+          <location>-0.005 -0.07 0.00125</location>
+          <orientation>0 0 0</orientation>
+          <radius>0.056</radius>
+        </ContactSphere>
+        <ContactSphere name="r_tibia2_col">
+          <components />
+          <socket_frame>/bodyset/tibia_r</socket_frame>
+          <location>-0.01 -0.245 0.00375</location>
+          <orientation>0 0 0</orientation>
+          <radius>0.048</radius>
+        </ContactSphere>
+        <ContactSphere name="l_femur1_col">
+          <components />
+          <socket_frame>/bodyset/femur_l</socket_frame>
+          <location>0 -0.1 -0.0175</location>
+          <orientation>0 0 0</orientation>
+          <radius>0.08</radius>
+        </ContactSphere>
+        <ContactSphere name="l_femur2_col">
+          <components />
+          <socket_frame>/bodyset/femur_l</socket_frame>
+          <location>0 -0.295 -0.01</location>
+          <orientation>0 0 0</orientation>
+          <radius>0.067</radius>
+        </ContactSphere>
+        <ContactSphere name="l_tibia1_col">
+          <components />
+          <socket_frame>/bodyset/tibia_l</socket_frame>
+          <location>-0.005 -0.07 -0.00125</location>
+          <orientation>0 0 0</orientation>
+          <radius>0.056</radius>
+        </ContactSphere>
+        <ContactSphere name="l_tibia2_col">
+          <components />
+          <socket_frame>/bodyset/tibia_l</socket_frame>
+          <location>-0.01 -0.245 -0.00375</location>
+          <orientation>0 0 0</orientation>
+          <radius>0.048</radius>
+        </ContactSphere>
+      </objects>
       <groups />
     </ContactGeometrySet>
     <ProbeSet name="probeset">

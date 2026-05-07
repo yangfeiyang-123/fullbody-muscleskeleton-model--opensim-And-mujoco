@@ -9,9 +9,9 @@ conventions:
   length_unit: meter
   mass_unit: kg
   angle_unit: radian
-  forward_axis: TODO_confirm
-  up_axis: TODO_confirm_OpenSim_gravity_is_0_-9.80665_0
-  lateral_axis: TODO_confirm
+  forward_axis: OpenSim +x maps to MuJoCo +x
+  up_axis: OpenSim +y maps to MuJoCo +z
+  lateral_axis: OpenSim +z maps to MuJoCo -y
   pelvis_root: MuJoCo freejoint root; OpenSim converted root coordinates include translations and Euler rotations
 frame_alignment:
   convention: OpenSim ground is y-up; MuJoCo world is z-up.
@@ -5528,67 +5528,99 @@ muscles:
 - opensim: vasmed_l
   mujoco: vasmed_l
 contacts:
-- opensim: TODO_opensim_contact_for_radius_r_coll_r_femur2_col
+- opensim:
+    geom1: radius_r_coll
+    geom2: r_femur2_col
   mujoco:
     geom1: radius_r_coll
     geom2: r_femur2_col
-- opensim: TODO_opensim_contact_for_radius_r_coll_r_femur1_col
+- opensim:
+    geom1: radius_r_coll
+    geom2: r_femur1_col
   mujoco:
     geom1: radius_r_coll
     geom2: r_femur1_col
-- opensim: TODO_opensim_contact_for_radius_r_coll_r_tibia1_col
+- opensim:
+    geom1: radius_r_coll
+    geom2: r_tibia1_col
   mujoco:
     geom1: radius_r_coll
     geom2: r_tibia1_col
-- opensim: TODO_opensim_contact_for_radius_r_coll_r_tibia2_col
+- opensim:
+    geom1: radius_r_coll
+    geom2: r_tibia2_col
   mujoco:
     geom1: radius_r_coll
     geom2: r_tibia2_col
-- opensim: TODO_opensim_contact_for_radius_l_coll_l_femur2_col
+- opensim:
+    geom1: radius_l_coll
+    geom2: l_femur2_col
   mujoco:
     geom1: radius_l_coll
     geom2: l_femur2_col
-- opensim: TODO_opensim_contact_for_radius_l_coll_l_femur1_col
+- opensim:
+    geom1: radius_l_coll
+    geom2: l_femur1_col
   mujoco:
     geom1: radius_l_coll
     geom2: l_femur1_col
-- opensim: TODO_opensim_contact_for_radius_l_coll_l_tibia1_col
+- opensim:
+    geom1: radius_l_coll
+    geom2: l_tibia1_col
   mujoco:
     geom1: radius_l_coll
     geom2: l_tibia1_col
-- opensim: TODO_opensim_contact_for_radius_l_coll_l_tibia2_col
+- opensim:
+    geom1: radius_l_coll
+    geom2: l_tibia2_col
   mujoco:
     geom1: radius_l_coll
     geom2: l_tibia2_col
-- opensim: TODO_opensim_contact_for_radius_l_coll_r_femur2_col
+- opensim:
+    geom1: radius_l_coll
+    geom2: r_femur2_col
   mujoco:
     geom1: radius_l_coll
     geom2: r_femur2_col
-- opensim: TODO_opensim_contact_for_radius_l_coll_r_femur1_col
+- opensim:
+    geom1: radius_l_coll
+    geom2: r_femur1_col
   mujoco:
     geom1: radius_l_coll
     geom2: r_femur1_col
-- opensim: TODO_opensim_contact_for_radius_l_coll_r_tibia1_col
+- opensim:
+    geom1: radius_l_coll
+    geom2: r_tibia1_col
   mujoco:
     geom1: radius_l_coll
     geom2: r_tibia1_col
-- opensim: TODO_opensim_contact_for_radius_l_coll_r_tibia2_col
+- opensim:
+    geom1: radius_l_coll
+    geom2: r_tibia2_col
   mujoco:
     geom1: radius_l_coll
     geom2: r_tibia2_col
-- opensim: TODO_opensim_contact_for_radius_r_coll_l_femur2_col
+- opensim:
+    geom1: radius_r_coll
+    geom2: l_femur2_col
   mujoco:
     geom1: radius_r_coll
     geom2: l_femur2_col
-- opensim: TODO_opensim_contact_for_radius_r_coll_l_femur1_col
+- opensim:
+    geom1: radius_r_coll
+    geom2: l_femur1_col
   mujoco:
     geom1: radius_r_coll
     geom2: l_femur1_col
-- opensim: TODO_opensim_contact_for_radius_r_coll_l_tibia1_col
+- opensim:
+    geom1: radius_r_coll
+    geom2: l_tibia1_col
   mujoco:
     geom1: radius_r_coll
     geom2: l_tibia1_col
-- opensim: TODO_opensim_contact_for_radius_r_coll_l_tibia2_col
+- opensim:
+    geom1: radius_r_coll
+    geom2: l_tibia2_col
   mujoco:
     geom1: radius_r_coll
     geom2: l_tibia2_col

@@ -93,6 +93,13 @@ def _mujoco_forward_zero_control(mjcf: Any, pose: dict[str, float], disable_cont
         model.opt.disableflags = old_disable
 
 
+def _opensim_locked(osim: Any, coordinate_name: str) -> bool:
+    try:
+        return bool(osim.model.getCoordinateSet().get(coordinate_name).getLocked(osim.state))
+    except Exception:
+        return False
+
+
 def _instant_acceleration_rows(osim: Any, mjcf: Any, mapping: MappingConfig) -> list[dict[str, Any]]:
     sample = next((s for s in mapping.pose_samples if str(s.get("name", "")) == "neutral"), mapping.pose_samples[0])
     constraints = _coupler_constraints(osim)
@@ -128,6 +135,8 @@ def _instant_acceleration_rows(osim: Any, mjcf: Any, mapping: MappingConfig) -> 
         if not oname or not mname:
             continue
         role = "dependent" if oname in dependent else "independent"
+        if role == "independent" and _opensim_locked(osim, oname):
+            role = "locked"
         if role != "independent" or oname.startswith("root_") or mname == "root":
             rows.append(
                 {

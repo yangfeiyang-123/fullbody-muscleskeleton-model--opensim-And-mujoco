@@ -9,6 +9,10 @@ from msk_equivalence.utils import write_markdown
 
 def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str, Any]:
     conv = mapping.conventions
+    alignment = mapping.raw.get("frame_alignment", {})
+    required = ["length_unit", "mass_unit", "angle_unit", "forward_axis", "up_axis", "lateral_axis", "pelvis_root"]
+    missing = [key for key in required if str(conv.get(key, "TODO")).startswith("TODO")]
+    has_alignment = isinstance(alignment, dict) and bool(alignment.get("opensim_to_mujoco_rotation"))
     rows = [
         "# Convention Report",
         "",
@@ -29,14 +33,29 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
     rows.extend(
         [
             "",
-            "## Manual Checks Required",
+            "## Frame Alignment",
             "",
-            "- Confirm OpenSim length and mass units from model provenance; OpenSim .osim files do not always encode this explicitly.",
-            "- Confirm pelvis/root frame orientation and whether world axes match between engines.",
-            "- For every coordinate, validate positive direction using the joint sweep report.",
-            "- Mark `sign_flip: true` in `coordinates` mapping when q must be negated for equivalence.",
-            "- Inertia comparison is risky if body frames or MuJoCo inertial frames are not aligned.",
+            f"- OpenSim to MuJoCo rotation: `{alignment.get('opensim_to_mujoco_rotation', 'TODO') if isinstance(alignment, dict) else 'TODO'}`",
+            f"- note: `{alignment.get('note', '') if isinstance(alignment, dict) else ''}`",
         ]
     )
+    rows.extend(
+        [
+            "",
+            "## Residual Checks",
+            "",
+            "- Coordinate positive directions are validated by the joint sweep report.",
+            "- Inertia comparison uses the explicit frame-alignment metadata and the inertial gate.",
+        ]
+    )
+    if missing:
+        rows.extend(["", "## Missing Convention Metadata", ""])
+        rows.extend(f"- {key}" for key in missing)
     write_markdown(out_dir / "convention_report.md", "\n".join(rows) + "\n")
-    return {"status": "warning", "reason": "Several convention items require manual model-provenance validation.", "files": ["convention_report.md"]}
+    if missing or not has_alignment:
+        return {
+            "status": "warning",
+            "reason": "Convention metadata is incomplete or frame alignment is missing.",
+            "files": ["convention_report.md"],
+        }
+    return {"status": "passed", "files": ["convention_report.md"]}
