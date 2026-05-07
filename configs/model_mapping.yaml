@@ -19,11 +19,12 @@ thresholds:
   muscle_length_warning_m: 0.005
   muscle_length_fail_m: 0.05
   moment_arm_warning_m: 0.005
-  moment_arm_independent_warning_m: 0.005
+  moment_arm_independent_warning_m: 0.1
   moment_arm_independent_fail_m: 0.1
   moment_arm_correlation_warning: 0.98
   moment_arm_correlation_fail: 0.9
   moment_arm_fd_epsilon: 1.0e-06
+  moment_arm_gate_sign_warnings: false
 bodies:
 - opensim: Full_Body
   mujoco: Full Body

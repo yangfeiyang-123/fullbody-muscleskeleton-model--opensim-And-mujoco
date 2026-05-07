@@ -97,6 +97,22 @@ def deactivate_wrap_objects(text: str) -> tuple[str, int]:
     return pattern.subn(r"\g<1>false\g<2>", text)
 
 
+def activate_wrap_object(text: str, name: str) -> tuple[str, int]:
+    pattern = re.compile(
+        rf'(<Wrap(?:Sphere|Cylinder|Torus|Ellipsoid)\b[^>]*name="{re.escape(name)}">\s*<components />\s*<active>)false(</active>)',
+        re.DOTALL,
+    )
+    return pattern.subn(r"\g<1>true\g<2>", text, count=1)
+
+
+def replace_path_point_location(text: str, name: str, location: str) -> tuple[str, int]:
+    pattern = re.compile(
+        rf'(<PathPoint name="{re.escape(name)}">.*?<location>)(.*?)(</location>)',
+        re.DOTALL,
+    )
+    return pattern.subn(rf"\g<1>{location}\g<3>", text, count=1)
+
+
 def main() -> None:
     text = OSIM.read_text()
 
@@ -135,12 +151,65 @@ def main() -> None:
     text, inertial_count = sync_body_inertials(text)
     text, wrap_count = deactivate_wrap_objects(text)
 
+    # Re-enable only wrap objects that reduce neutral MuJoCo tendon-length error.
+    selected_wraps = [
+        "GasMed_at_shank_r_wrap_GasMed_at_shank_r_site_gasmed_r_side",
+        "GasMed_at_shank_l_wrap_GasMed_at_shank_l_site_gasmed_l_side",
+        "TMAJ_LAThum_cylinder_TMAJ_LAThum_cylinder_TMAJ_1_sidesite",
+        "LAT_TMAJ2hh_sphere_LAT_TMAJ2hh_sphere_TMAJ_2_sidesite",
+        "TMAJ_LAThum_cylinder_left_TMAJ_LAThum_cylinder_TMAJ_1_sidesite_left",
+        "LAT_TMAJ2hh_sphere_left_LAT_TMAJ2hh_sphere_TMAJ_2_sidesite_left",
+        "TMAJ_LAThum_cylinder_TMAJ_LAThum_cylinder_LAT1_1_sidesite",
+        "delt2hum_cylinder_LAT_TMAJ2hh_sphere_LAT1_2_sidesite",
+        "TMAJ_LAThum_cylinder_TMAJ_LAThum_cylinder_LAT2_1_sidesite",
+        "delt2hum_cylinder",
+        "TMAJ_LAThum_cylinder_TMAJ_LAThum_cylinder_LAT3_1_sidesite",
+        "delt2hum_cylinder_LAT_TMAJ2hh_sphere_LAT3_2_sidesite",
+        "TMAJ_LAThum_cylinder_left_TMAJ_LAThum_cylinder_LAT1_1_sidesite_left",
+        "delt2hum_cylinder_left_LAT_TMAJ2hh_sphere_LAT1_2_sidesite_left",
+        "TMAJ_LAThum_cylinder_left_TMAJ_LAThum_cylinder_LAT2_1_sidesite_left",
+        "delt2hum_cylinder_left",
+        "TMAJ_LAThum_cylinder_left_TMAJ_LAThum_cylinder_LAT3_1_sidesite_left",
+        "delt2hum_cylinder_left_LAT_TMAJ2hh_sphere_LAT3_2_sidesite_left",
+        "SUP_cylinder_SUP_cylinder_SUP_2_sidesite",
+        "SUP_cylinder_left_SUP_cylinder_SUP_2_sidesite_left",
+    ]
+    activated = 0
+    missing_wraps: list[str] = []
+    for name in selected_wraps:
+        text, count = activate_wrap_object(text, name)
+        if count == 1:
+            activated += 1
+        else:
+            missing_wraps.append(name)
+    if missing_wraps:
+        raise RuntimeError(f"Failed to activate selected wraps: {', '.join(missing_wraps)}")
+
+    path_point_updates = {
+        "gaslat_r_p2": "0.00297654322418 0.018974661721 -0.00603002196683",
+        "gaslat_l_p2": "0.00297654324218 0.0189746618791 0.00603002196842",
+        "FDP4_p9": "-0.000689224581881 -0.0259790678693 -0.00241147800781",
+        "FDP4_left_p9": "-0.00068922458211 -0.0259790678693 0.00241147800781",
+    }
+    point_updates = 0
+    missing_points: list[str] = []
+    for name, location in path_point_updates.items():
+        text, count = replace_path_point_location(text, name, location)
+        if count == 1:
+            point_updates += 1
+        else:
+            missing_points.append(name)
+    if missing_points:
+        raise RuntimeError(f"Failed to update path points: {', '.join(missing_points)}")
+
     OSIM.write_text(text)
     print(f"updated {OSIM}")
     print("root defaults updated:", ", ".join(root_updates))
     print(f"dependent coordinates marked free-to-satisfy constraints: {changed}")
     print(f"body inertials synchronized from MuJoCo: {inertial_count}")
     print(f"OpenSim wrap objects deactivated to match MuJoCo neutral tendon geometry: {wrap_count}")
+    print(f"selected OpenSim wrap objects reactivated: {activated}")
+    print(f"path points adjusted to MuJoCo neutral tendon lengths: {point_updates}")
 
 
 if __name__ == "__main__":

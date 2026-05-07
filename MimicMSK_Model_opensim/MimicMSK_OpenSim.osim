@@ -1821,7 +1821,7 @@
               </WrapSphere>
               <WrapCylinder name="TMAJ_LAThum_cylinder_TMAJ_LAThum_cylinder_TMAJ_1_sidesite">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>1.5359999 -0.063699355 1.414001</xyz_body_rotation>
                 <translation>0.0007 -0.0443 -0.0055</translation>
                 <quadrant>+x</quadrant>
@@ -1838,7 +1838,7 @@
               </WrapCylinder>
               <WrapSphere name="LAT_TMAJ2hh_sphere_LAT_TMAJ2hh_sphere_TMAJ_2_sidesite">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-0.12719996 0.27610049 0.019720033</xyz_body_rotation>
                 <translation>-0.0016 0.0092 0.0052</translation>
                 <quadrant>-y</quadrant>
@@ -1919,7 +1919,7 @@
               </WrapSphere>
               <WrapCylinder name="TMAJ_LAThum_cylinder_TMAJ_LAThum_cylinder_LAT1_1_sidesite">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>1.5359999 -0.063699355 1.414001</xyz_body_rotation>
                 <translation>0.0007 -0.0443 -0.0055</translation>
                 <quadrant>+x</quadrant>
@@ -1936,7 +1936,7 @@
               </WrapCylinder>
               <WrapCylinder name="delt2hum_cylinder_LAT_TMAJ2hh_sphere_LAT1_2_sidesite">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>1.5509998 -0.019960052 0.05966002</xyz_body_rotation>
                 <translation>0.0017 -0.0958 0.0011</translation>
                 <quadrant>-z</quadrant>
@@ -1953,7 +1953,7 @@
               </WrapCylinder>
               <WrapCylinder name="TMAJ_LAThum_cylinder_TMAJ_LAThum_cylinder_LAT2_1_sidesite">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>1.5359999 -0.063699355 1.414001</xyz_body_rotation>
                 <translation>0.0007 -0.0443 -0.0055</translation>
                 <quadrant>+x</quadrant>
@@ -1970,7 +1970,7 @@
               </WrapCylinder>
               <WrapCylinder name="delt2hum_cylinder">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>1.5509998 -0.019960052 0.05966002</xyz_body_rotation>
                 <translation>0.0017 -0.0958 0.0011</translation>
                 <quadrant>Unassigned</quadrant>
@@ -1987,7 +1987,7 @@
               </WrapCylinder>
               <WrapCylinder name="TMAJ_LAThum_cylinder_TMAJ_LAThum_cylinder_LAT3_1_sidesite">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>1.5359999 -0.063699355 1.414001</xyz_body_rotation>
                 <translation>0.0007 -0.0443 -0.0055</translation>
                 <quadrant>+x</quadrant>
@@ -2004,7 +2004,7 @@
               </WrapCylinder>
               <WrapCylinder name="delt2hum_cylinder_LAT_TMAJ2hh_sphere_LAT3_2_sidesite">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>1.5509998 -0.019960052 0.05966002</xyz_body_rotation>
                 <translation>0.0017 -0.0958 0.0011</translation>
                 <quadrant>-z</quadrant>
@@ -2323,7 +2323,7 @@
             <objects>
               <WrapCylinder name="SUP_cylinder_SUP_cylinder_SUP_2_sidesite">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>1.4479997 0.30400073 -2.4410004</xyz_body_rotation>
                 <translation>0.0045 -0.0437 0.0059</translation>
                 <quadrant>-x</quadrant>
@@ -4840,7 +4840,7 @@
               </WrapSphere>
               <WrapCylinder name="TMAJ_LAThum_cylinder_left_TMAJ_LAThum_cylinder_TMAJ_1_sidesite_left">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-1.5359999 0.063699355 1.414001</xyz_body_rotation>
                 <translation>0.0007 -0.0443 0.0055</translation>
                 <quadrant>+x</quadrant>
@@ -4857,7 +4857,7 @@
               </WrapCylinder>
               <WrapSphere name="LAT_TMAJ2hh_sphere_left_LAT_TMAJ2hh_sphere_TMAJ_2_sidesite_left">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>0.12719996 -0.27610049 0.019720033</xyz_body_rotation>
                 <translation>-0.0016 0.0092 -0.0052</translation>
                 <quadrant>-y</quadrant>
@@ -4938,7 +4938,7 @@
               </WrapSphere>
               <WrapCylinder name="TMAJ_LAThum_cylinder_left_TMAJ_LAThum_cylinder_LAT1_1_sidesite_left">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-1.5359999 0.063699355 1.414001</xyz_body_rotation>
                 <translation>0.0007 -0.0443 0.0055</translation>
                 <quadrant>+x</quadrant>
@@ -4955,7 +4955,7 @@
               </WrapCylinder>
               <WrapCylinder name="delt2hum_cylinder_left_LAT_TMAJ2hh_sphere_LAT1_2_sidesite_left">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-1.5509998 0.019960052 0.05966002</xyz_body_rotation>
                 <translation>0.0017 -0.0958 -0.0011</translation>
                 <quadrant>+z</quadrant>
@@ -4972,7 +4972,7 @@
               </WrapCylinder>
               <WrapCylinder name="TMAJ_LAThum_cylinder_left_TMAJ_LAThum_cylinder_LAT2_1_sidesite_left">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-1.5359999 0.063699355 1.414001</xyz_body_rotation>
                 <translation>0.0007 -0.0443 0.0055</translation>
                 <quadrant>+x</quadrant>
@@ -4989,7 +4989,7 @@
               </WrapCylinder>
               <WrapCylinder name="delt2hum_cylinder_left">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-1.5509998 0.019960052 0.05966002</xyz_body_rotation>
                 <translation>0.0017 -0.0958 -0.0011</translation>
                 <quadrant>Unassigned</quadrant>
@@ -5006,7 +5006,7 @@
               </WrapCylinder>
               <WrapCylinder name="TMAJ_LAThum_cylinder_left_TMAJ_LAThum_cylinder_LAT3_1_sidesite_left">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-1.5359999 0.063699355 1.414001</xyz_body_rotation>
                 <translation>0.0007 -0.0443 0.0055</translation>
                 <quadrant>+x</quadrant>
@@ -5023,7 +5023,7 @@
               </WrapCylinder>
               <WrapCylinder name="delt2hum_cylinder_left_LAT_TMAJ2hh_sphere_LAT3_2_sidesite_left">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-1.5509998 0.019960052 0.05966002</xyz_body_rotation>
                 <translation>0.0017 -0.0958 -0.0011</translation>
                 <quadrant>+z</quadrant>
@@ -5342,7 +5342,7 @@
             <objects>
               <WrapCylinder name="SUP_cylinder_left_SUP_cylinder_SUP_2_sidesite_left">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-1.4479997 -0.30400073 -2.4410004</xyz_body_rotation>
                 <translation>0.0045 -0.0437 -0.0059</translation>
                 <quadrant>-x</quadrant>
@@ -7858,7 +7858,7 @@
               </WrapCylinder>
               <WrapCylinder name="GasMed_at_shank_r_wrap_GasMed_at_shank_r_site_gasmed_r_side">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>2.96723 0.027972548 -1.4781202</xyz_body_rotation>
                 <translation>-0.0074 -0.074 -0.0033</translation>
                 <quadrant>-x</quadrant>
@@ -8405,7 +8405,7 @@
               </WrapCylinder>
               <WrapCylinder name="GasMed_at_shank_l_wrap_GasMed_at_shank_l_site_gasmed_l_side">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-2.96723 -0.027972548 -1.4781202</xyz_body_rotation>
                 <translation>-0.0074 -0.074 0.0033</translation>
                 <quadrant>-x</quadrant>
@@ -41417,7 +41417,7 @@
                 <PathPoint name="FDP4_p9">
                   <components />
                   <socket_parent_frame>/bodyset/n_4distph_r</socket_parent_frame>
-                  <location>0.0002 -0.014 -0.0022</location>
+                  <location>-0.000689224581881 -0.0259790678693 -0.00241147800781</location>
                 </PathPoint>
               </objects>
               <groups />
@@ -46287,7 +46287,7 @@
                 <PathPoint name="FDP4_left_p9">
                   <components />
                   <socket_parent_frame>/bodyset/n_4distph_l</socket_parent_frame>
-                  <location>0.0002 -0.014 0.0022</location>
+                  <location>-0.00068922458211 -0.0259790678693 0.00241147800781</location>
                 </PathPoint>
               </objects>
               <groups />
@@ -49199,7 +49199,7 @@
                 <PathPoint name="gaslat_r_p2">
                   <components />
                   <socket_parent_frame>/bodyset/calcn_r</socket_parent_frame>
-                  <location>0.0044 0.031 -0.0053</location>
+                  <location>0.00297654322418 0.018974661721 -0.00603002196683</location>
                 </PathPoint>
               </objects>
               <groups />
@@ -51605,7 +51605,7 @@
                 <PathPoint name="gaslat_l_p2">
                   <components />
                   <socket_parent_frame>/bodyset/calcn_l</socket_parent_frame>
-                  <location>0.0044 0.031 0.0053</location>
+                  <location>0.00297654324218 0.0189746618791 0.00603002196842</location>
                 </PathPoint>
               </objects>
               <groups />

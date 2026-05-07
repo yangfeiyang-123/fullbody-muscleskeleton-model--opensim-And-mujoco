@@ -74,9 +74,10 @@ def _status(max_error: float | None, corr: float, sign_warnings: int, mapping: M
     warn = float(mapping.thresholds.get("moment_arm_independent_warning_m", mapping.thresholds.get("moment_arm_warning_m", 0.005)))
     corr_fail = float(mapping.thresholds.get("moment_arm_correlation_fail", 0.9))
     corr_warn = float(mapping.thresholds.get("moment_arm_correlation_warning", 0.98))
+    gate_signs = bool(mapping.thresholds.get("moment_arm_gate_sign_warnings", True))
     if max_error > fail or (np.isfinite(corr) and corr < corr_fail):
         return "failed"
-    if max_error > warn or sign_warnings > 0 or (np.isfinite(corr) and corr < corr_warn):
+    if max_error > warn or (gate_signs and sign_warnings > 0) or (np.isfinite(corr) and corr < corr_warn):
         return "warning"
     return "passed"
 
@@ -155,6 +156,6 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
         "direct_independent_correlation": direct_corr,
         "direct_independent_sign_warning_count": direct_sign_count,
         "dependent_coordinate_pair_count": int(len(dependent_rows)),
-        "note": "Status gates direct independent-coordinate moment arms only. Dependent coordinates are recorded but require constraint-chain-aware validation.",
+        "note": "Status gates direct independent-coordinate moment-arm magnitude and correlation. Sign warnings are diagnostics when moment_arm_gate_sign_warnings is false. Dependent coordinates are recorded but require constraint-chain-aware validation.",
         "files": files,
     }

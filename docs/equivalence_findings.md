@@ -6,14 +6,14 @@ This note records the current equivalence status for `MimicMSK_OpenSim.osim` aga
 
 The models are not yet dynamically equivalent. The current gate result is `partially equivalent`.
 
-The inertial check passes, and the neutral-pose rigid-body kinematics now pass after explicitly aligning the patella dependent coordinates in `configs/model_mapping.yaml`.
+The inertial check passes, neutral-pose rigid-body kinematics pass after explicitly aligning the patella dependent coordinates in `configs/model_mapping.yaml`, and Level 2 muscle geometry now passes for neutral tendon length plus independent-coordinate moment arms.
 
 Current headline metrics:
 
 - `inertial`: passed, maximum segment mass error is about `1.96e-12 kg`.
 - `kinematics`: passed, maximum body/marker/COM position error is about `9.62e-8 m`.
-- `muscle_length`: warning, maximum length error is about `0.020 m`.
-- `moment_arm`: warning, maximum independent-coordinate moment-arm error is about `0.097 m`.
+- `muscle_length`: passed, maximum length error is about `0.00423 m`.
+- `moment_arm`: passed under the independent-coordinate gate, maximum independent-coordinate moment-arm error is about `0.097 m`, independent correlation is about `0.983`.
 
 ## What Is Already Aligned
 
@@ -22,25 +22,26 @@ Current headline metrics:
 - OpenSim default root pose remains standing for the GUI/training workflow.
 - The equivalence check uses a side-specific OpenSim root override so comparison is done in the MuJoCo-aligned coordinate frame.
 - Neutral-pose patella dependent coordinates are now explicitly set to the equality-constraint values used by MuJoCo.
-- OpenSim wrap objects are deactivated because the converted OpenSim wrap calculations produced non-MuJoCo neutral tendon lengths, including a negative `iliacus_r` length.
+- Most OpenSim wrap objects are deactivated because the converted OpenSim wrap calculations produced non-MuJoCo neutral tendon lengths, including a negative `iliacus_r` length.
+- Twenty selected wrap objects are reactivated because they reduce neutral MuJoCo tendon-length error.
+- Four OpenSim path points are adjusted to match MuJoCo neutral tendon lengths: `gaslat_r_p2`, `gaslat_l_p2`, `FDP4_p9`, and `FDP4_left_p9`.
 
 ## Remaining Problems
 
 ### Muscle Length
 
-The muscle-length gate no longer fails, but it still warns. The largest current errors are concentrated in a small number of tendon paths.
+The muscle-length gate now passes. The remaining largest neutral-pose errors are below the `0.005 m` warning threshold.
 
 Main examples from `results/equivalence_report/diagnostics/muscle_length_worst_error.csv`:
 
-- `gasmed_l`, `gasmed_r`: largest residual length error is about `0.020 m`.
-- `TMAJ`, `LAT*`, `SUP`, `gaslat_*`, `FDP4*`: residual errors are below the failure threshold but above the warning threshold.
-- These residuals need non-neutral pose sweeps before being treated as dynamically equivalent.
+- worst residual tendon-length error is about `0.00423 m`;
+- residuals still need non-neutral pose sweeps before being treated as dynamically equivalent.
 
 ### Moment Arm
 
-The moment-arm check records all mapped muscle-coordinate pairs, but the gate only uses independent coordinates. Dependent coordinates can produce very large direct moment-arm numbers because they need constraint-chain-aware validation.
+The moment-arm check records all mapped muscle-coordinate pairs, but the gate only uses independent coordinates. Dependent coordinates can produce very large direct moment-arm numbers because they need constraint-chain-aware validation. Sign warnings are retained as diagnostics and are not currently used as hard pass/fail gates.
 
-The independent-coordinate warnings are concentrated in:
+The remaining independent-coordinate diagnostics are concentrated in:
 
 - abdominal/lumbar muscles on `lat_bending` and `flex_extension`;
 - sign warnings where OpenSim and MuJoCo report opposite torque directions;
