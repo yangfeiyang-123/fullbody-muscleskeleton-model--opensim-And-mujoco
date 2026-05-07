@@ -75,6 +75,20 @@ def _opensim_actuation(osim: Any, muscle_name: str, activation: float, pose: dic
     return float(muscle.getActuation(osim.state))
 
 
+def _opensim_min_activation(osim: Any, muscle_name: str) -> float:
+    try:
+        muscle = osim.model.getMuscles().get(muscle_name)
+        if hasattr(osim.opensim, "Thelen2003Muscle"):
+            thelen = osim.opensim.Thelen2003Muscle.safeDownCast(muscle)
+            if thelen:
+                return float(thelen.getMinimumActivation())
+        if hasattr(muscle, "getMinimumActivation"):
+            return float(muscle.getMinimumActivation())
+    except Exception:
+        pass
+    return 0.0
+
+
 def _mujoco_actuator_force(mjcf: Any, actuator_name: str, activation: float, pose: dict[str, float]) -> float:
     mj = mjcf.mujoco
     model = mjcf.model

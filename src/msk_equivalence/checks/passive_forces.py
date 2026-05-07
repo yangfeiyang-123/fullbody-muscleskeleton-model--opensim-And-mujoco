@@ -6,7 +6,7 @@ from typing import Any
 import numpy as np
 
 from msk_equivalence.checks.kinematics import _pose_values
-from msk_equivalence.checks.muscle_torque import _mujoco_actuator_force, _opensim_actuation
+from msk_equivalence.checks.muscle_torque import _mujoco_actuator_force, _opensim_actuation, _opensim_min_activation
 from msk_equivalence.mapping import MappingConfig
 from msk_equivalence.utils import rel_error, rmse, write_csv, write_worst_csv
 
@@ -46,19 +46,21 @@ def _passive_rows(osim: Any, mjcf: Any, mapping: MappingConfig) -> list[dict[str
         if not oname or not mname:
             continue
         try:
+            activation_floor = _opensim_min_activation(osim, oname)
             opensim_force = abs(_opensim_actuation(osim, oname, 0.0, opensim_pose))
-            mujoco_force = _mujoco_actuator_force(mjcf, mname, 0.0, mujoco_pose)
+            mujoco_force = _mujoco_actuator_force(mjcf, mname, activation_floor, mujoco_pose)
             mujoco_active_capacity = max(0.0, _mujoco_actuator_force(mjcf, mname, 1.0, mujoco_pose) - mujoco_force)
             error = abs(opensim_force - mujoco_force)
             status = "evaluated"
         except Exception as exc:
-            opensim_force = mujoco_force = mujoco_active_capacity = error = np.nan
+            activation_floor = opensim_force = mujoco_force = mujoco_active_capacity = error = np.nan
             status = f"skipped: {exc}"
         rows.append(
             {
                 "experiment": "neutral_zero_activation_passive_muscle_force",
                 "opensim_muscle": oname,
                 "mujoco_actuator": mname,
+                "activation_floor": activation_floor,
                 "opensim_passive_force_n": opensim_force,
                 "mujoco_passive_force_n": mujoco_force,
                 "mujoco_active_force_capacity_n": mujoco_active_capacity,
@@ -128,6 +130,6 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
         "rmse_abs_error_n": rmse(finite["absolute_error_n"]) if not finite.empty else None,
         "warning_threshold_n": float(mapping.thresholds.get("passive_force_warning_n", 1.0)),
         "failure_threshold_n": float(mapping.thresholds.get("passive_force_fail_n", 3.0)),
-        "note": "This executable gate compares neutral-pose zero-activation muscle force. Ligaments, joint damping/limits and passive velocity sweeps remain planned diagnostics.",
+        "note": "This executable gate compares neutral-pose zero-command muscle force using the OpenSim Thelen minimum activation as the MuJoCo activation floor. Ligaments, joint damping/limits and passive velocity sweeps remain planned diagnostics.",
         "files": files,
     }
