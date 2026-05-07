@@ -9,7 +9,7 @@ import numpy as np
 
 from msk_equivalence.checks.kinematics import _pose_values
 from msk_equivalence.mapping import MappingConfig
-from msk_equivalence.utils import correlation, ensure_dir, rmse, write_csv, write_json
+from msk_equivalence.utils import correlation, ensure_dir, rmse, write_csv, write_json, write_worst_csv
 
 
 def _plot(rows: list[dict[str, Any]], out_dir: Path) -> None:
@@ -129,11 +129,18 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
             )
     df = write_csv(out_dir / "moment_arm_error.csv", rows)
     write_json(out_dir / "moment_arm_sign_warnings.json", {"warnings": warnings})
+    files = ["moment_arm_error.csv", "moment_arm_sign_warnings.json", "plots/moment_arm/"]
+    worst = write_worst_csv(out_dir / "diagnostics" / "moment_arm_worst_error.csv", df, "absolute_error")
+    if worst:
+        files.append(f"diagnostics/{worst}")
     if os.environ.get("MSK_EQUIVALENCE_SKIP_PLOTS") != "1":
         _plot(rows, out_dir)
     finite = df[df["absolute_error"].apply(np.isfinite)] if not df.empty else df
     direct = finite[finite["coordinate_role"] == "independent"] if not finite.empty else finite
     dependent_rows = finite[finite["coordinate_role"] == "dependent"] if not finite.empty else finite
+    direct_worst = write_worst_csv(out_dir / "diagnostics" / "moment_arm_worst_independent_error.csv", direct, "absolute_error")
+    if direct_worst:
+        files.append(f"diagnostics/{direct_worst}")
     direct_corr = correlation(direct["opensim_moment_arm"], direct["mujoco_moment_arm"]) if not direct.empty else np.nan
     direct_max = float(direct["absolute_error"].max()) if not direct.empty else None
     direct_sign_count = len(direct_warnings)
@@ -149,5 +156,5 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
         "direct_independent_sign_warning_count": direct_sign_count,
         "dependent_coordinate_pair_count": int(len(dependent_rows)),
         "note": "Status gates direct independent-coordinate moment arms only. Dependent coordinates are recorded but require constraint-chain-aware validation.",
-        "files": ["moment_arm_error.csv", "moment_arm_sign_warnings.json", "plots/moment_arm/"],
+        "files": files,
     }

@@ -14,7 +14,12 @@ thresholds:
   position_warning_m: 0.01
   position_fail_m: 0.05
   muscle_length_warning_m: 0.005
+  muscle_length_fail_m: 0.05
   moment_arm_warning_m: 0.005
+  moment_arm_independent_warning_m: 0.005
+  moment_arm_independent_fail_m: 0.1
+  moment_arm_correlation_warning: 0.98
+  moment_arm_correlation_fail: 0.9
   moment_arm_fd_epsilon: 0.000001
 
 bodies:
@@ -74,3 +79,33 @@ moment_arm_pairs:
 #   qdot: data/qdot.csv
 #   qddot: data/qddot.csv
 #   external_forces: data/grf.csv
+
+# Optional dynamics experiment plan. Backends must implement adapters before these rows become numeric gates.
+dynamics_experiments:
+  inverse_dynamics:
+    - name: gravity_static_neutral
+      q_sample: neutral
+      qdot: zero
+      qddot: zero
+      contacts: disabled
+      compare: generalized_torque_independent_coordinates
+  muscle_torque:
+    - name: single_muscle_activation_sweep
+      q_sample: neutral
+      activation_values: [0.0, 0.25, 0.5, 1.0]
+      compare: generalized_muscle_torque_independent_coordinates
+  passive_forces:
+    - name: passive_joint_grid
+      q_samples: data/passive_joint_grid.csv
+      qdot: zero
+      activation: zero
+      compare: passive_generalized_torque
+  forward_dynamics:
+    - name: passive_no_contact_100ms
+      horizon_s: 0.1
+      dt_s: 0.001
+      q_sample: neutral
+      qdot: zero
+      activation: zero
+      contacts: disabled
+      compare: [root_com_position, q_independent, qdot_independent]

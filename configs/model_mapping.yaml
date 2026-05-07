@@ -17,7 +17,12 @@ thresholds:
   position_warning_m: 0.01
   position_fail_m: 0.05
   muscle_length_warning_m: 0.005
+  muscle_length_fail_m: 0.05
   moment_arm_warning_m: 0.005
+  moment_arm_independent_warning_m: 0.005
+  moment_arm_independent_fail_m: 0.1
+  moment_arm_correlation_warning: 0.98
+  moment_arm_correlation_fail: 0.9
   moment_arm_fd_epsilon: 1.0e-06
 bodies:
 - opensim: Full_Body
@@ -5559,7 +5564,13 @@ contacts:
     geom2: l_tibia2_col
 pose_samples:
 - name: neutral
-  q: {}
+  q:
+    knee_angle_beta_translation2_r: -0.0108281
+    knee_angle_beta_translation1_r: 0.0524192
+    knee_angle_beta_rotation1_r: 0.010506
+    knee_angle_beta_translation2_l: -0.0108281
+    knee_angle_beta_translation1_l: 0.0524192
+    knee_angle_beta_rotation1_l: 0.010506
   q_opensim:
     root_ty: 0.0
     root_rx: 0.0
@@ -5567,6 +5578,82 @@ joint_sweep:
   values:
   - 0.0
   note: Set nonzero values after reviewing root freejoint and coordinate signs.
+dynamics_experiments:
+  inverse_dynamics:
+  - name: gravity_static_neutral
+    q_sample: neutral
+    qdot: zero
+    qddot: zero
+    contacts: disabled
+    compare: generalized_torque_independent_coordinates
+    purpose: Verify mass distribution, joint axes, gravity direction and coordinate signs before muscle controls.
+  - name: sagittal_sinusoid_no_contact
+    q_trajectory: configs/dynamics_samples/sagittal_sinusoid.csv
+    contacts: disabled
+    compare: generalized_torque_independent_coordinates
+    purpose: Compare inertia, Coriolis and velocity-dependent terms on hip, knee, ankle and lumbar coordinates.
+  muscle_torque:
+  - name: single_muscle_activation_sweep
+    q_sample: neutral
+    activation_values:
+    - 0.0
+    - 0.25
+    - 0.5
+    - 1.0
+    compare: generalized_muscle_torque_independent_coordinates
+    purpose: Verify moment arms and active force-length/force-velocity parameterization muscle by muscle.
+  - name: antagonist_group_activation
+    q_sample: neutral
+    groups:
+    - hip_flexors
+    - hip_extensors
+    - knee_extensors
+    - ankle_plantarflexors
+    compare: net_generalized_torque
+    purpose: Verify multi-muscle control ordering and grouped torque direction.
+  passive_forces:
+  - name: passive_joint_grid
+    q_samples: configs/dynamics_samples/passive_joint_grid.csv
+    qdot: zero
+    activation: zero
+    compare: passive_generalized_torque
+    purpose: Verify passive muscle, ligament, damping and joint-limit forces before RL rollouts.
+  forward_dynamics:
+  - name: passive_no_contact_100ms
+    horizon_s: 0.1
+    dt_s: 0.001
+    q_sample: neutral
+    qdot: zero
+    activation: zero
+    contacts: disabled
+    compare:
+    - root_com_position
+    - q_independent
+    - qdot_independent
+    purpose: Detect sign, gravity and inertia mismatch without contact discontinuities.
+  - name: single_joint_torque_pulse_50ms
+    horizon_s: 0.05
+    dt_s: 0.001
+    torque_coordinates:
+    - hip_flexion_r
+    - knee_angle_r
+    - ankle_angle_r
+    contacts: disabled
+    compare:
+    - q_independent
+    - qdot_independent
+    purpose: Validate coordinate-level accelerations under matched generalized forces.
+  - name: matched_activation_rollout_200ms
+    horizon_s: 0.2
+    dt_s: 0.001
+    activation_profile: configs/dynamics_samples/matched_activation_step.csv
+    contacts: disabled
+    compare:
+    - root_com_position
+    - q_independent
+    - qdot_independent
+    - muscle_tendon_length
+    purpose: Validate short-horizon muscle-driven behavior after Level 2 geometry passes.
 moment_arm_pairs:
 - muscle: Ps_L1_VB_r
   coordinate: flex_extension

@@ -43,6 +43,18 @@ def write_csv(path: Path, rows: Iterable[dict[str, Any]], columns: list[str] | N
     return df
 
 
+def write_worst_csv(path: Path, df: pd.DataFrame, error_column: str, limit: int = 20) -> str | None:
+    if df.empty or error_column not in df:
+        return None
+    numeric = pd.to_numeric(df[error_column], errors="coerce")
+    worst = df.loc[numeric[np.isfinite(numeric)].sort_values(ascending=False).head(limit).index]
+    if worst.empty:
+        return None
+    ensure_dir(path.parent)
+    worst.to_csv(path, index=False)
+    return path.name
+
+
 def vec3(value: Any) -> np.ndarray:
     if value is None:
         return np.full(3, np.nan)

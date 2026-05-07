@@ -8,7 +8,7 @@ import numpy as np
 
 from msk_equivalence.checks.kinematics import _pose_values
 from msk_equivalence.mapping import MappingConfig
-from msk_equivalence.utils import correlation, ensure_dir, rel_error, status_from_errors, write_csv
+from msk_equivalence.utils import correlation, ensure_dir, rel_error, status_from_errors, write_csv, write_worst_csv
 
 
 def _plot(rows: list[dict[str, Any]], out_dir: Path) -> None:
@@ -68,6 +68,10 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
                 }
             )
     df = write_csv(out_dir / "muscle_length_error.csv", rows)
+    files = ["muscle_length_error.csv", "plots/muscle_length/"]
+    worst = write_worst_csv(out_dir / "diagnostics" / "muscle_length_worst_error.csv", df, "absolute_error")
+    if worst:
+        files.append(f"diagnostics/{worst}")
     if os.environ.get("MSK_EQUIVALENCE_SKIP_PLOTS") != "1":
         _plot(rows, out_dir)
     finite = df[df["absolute_error"].apply(np.isfinite)] if not df.empty else df
@@ -81,5 +85,5 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
         "correlation": correlation(finite["opensim_length"], finite["mujoco_length"]) if not finite.empty else None,
         "warning_threshold_m": warn,
         "failure_threshold_m": fail,
-        "files": ["muscle_length_error.csv", "plots/muscle_length/"],
+        "files": files,
     }

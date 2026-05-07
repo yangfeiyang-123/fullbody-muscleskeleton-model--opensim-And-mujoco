@@ -6,7 +6,7 @@ from typing import Any
 import numpy as np
 
 from msk_equivalence.mapping import MappingConfig
-from msk_equivalence.utils import norm_error, rmse, status_from_errors, write_csv
+from msk_equivalence.utils import norm_error, rmse, status_from_errors, write_csv, write_worst_csv
 
 
 def _pose_values(sample: dict[str, Any], mapping: MappingConfig, side: str) -> dict[str, float]:
@@ -74,6 +74,11 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
     body_df = write_csv(out_dir / "kinematics_body_pose_error.csv", body_rows)
     marker_df = write_csv(out_dir / "kinematics_marker_site_error.csv", marker_rows)
     com_df = write_csv(out_dir / "whole_body_com_error.csv", com_rows)
+    files = ["kinematics_body_pose_error.csv", "kinematics_marker_site_error.csv", "whole_body_com_error.csv"]
+    body_worst = write_worst_csv(out_dir / "diagnostics" / "kinematics_worst_body_pose_error.csv", body_df, "position_error")
+    marker_worst = write_worst_csv(out_dir / "diagnostics" / "kinematics_worst_marker_site_error.csv", marker_df, "position_error")
+    com_worst = write_worst_csv(out_dir / "diagnostics" / "kinematics_worst_whole_body_com_error.csv", com_df, "whole_body_com_error")
+    files.extend(f"diagnostics/{name}" for name in (body_worst, marker_worst, com_worst) if name)
     errors = list(body_df.get("position_error", [])) + list(marker_df.get("position_error", [])) + list(com_df.get("whole_body_com_error", []))
     finite = [float(v) for v in errors if np.isfinite(v)]
     max_error = float(np.max(finite)) if finite else None
@@ -86,5 +91,5 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
         "rmse": rmse(finite),
         "warning_threshold_m": warn,
         "failure_threshold_m": fail,
-        "files": ["kinematics_body_pose_error.csv", "kinematics_marker_site_error.csv", "whole_body_com_error.csv"],
+        "files": files,
     }

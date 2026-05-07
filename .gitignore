@@ -13,6 +13,8 @@
 !src/**
 !configs/
 !configs/**
+!docs/
+!docs/**
 !examples/
 !examples/**
 !resources/
@@ -31,6 +33,7 @@
 # Generated caches, logs, and temporary OpenSim validation/output files.
 __pycache__/
 **/__pycache__/
+*.egg-info/
 *.pyc
 *.log
 test/_smoke_*/

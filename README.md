@@ -114,6 +114,27 @@ Reports are written under `results/equivalence_report/`, which is intentionally 
 
 报告会写入 `results/equivalence_report/`，该目录会被 Git 有意忽略。
 
+The report also writes worst-case diagnostics under `results/equivalence_report/diagnostics/`. Use these CSV files first when deciding which model geometry to change.
+
+报告还会在 `results/equivalence_report/diagnostics/` 下写出最坏样本诊断 CSV。决定修改哪部分模型几何前，优先查看这些文件。
+
+To make the command fail in CI when the equivalence gate is not satisfied, add `--fail-on-gate`:
+
+如果希望门控不通过时在 CI 中返回失败状态，可以加 `--fail-on-gate`：
+
+```bash
+PYTHONPATH=src MSK_EQUIVALENCE_SKIP_PLOTS=1 python3 -m msk_equivalence.compare \
+  --osim MimicMSK_Model_opensim/MimicMSK_OpenSim.osim \
+  --mjcf MimicMSK_Model_mujoco/body/myofullbody.xml \
+  --mapping configs/model_mapping.yaml \
+  --out results/equivalence_report \
+  --fail-on-gate
+```
+
+The current dynamics experiment protocol is documented in `docs/dynamics_equivalence_experiments.md`; current model findings are summarized in `docs/equivalence_findings.md`.
+
+当前动力学实验协议见 `docs/dynamics_equivalence_experiments.md`；当前模型问题汇总见 `docs/equivalence_findings.md`。
+
 ## Repository Layout / 仓库结构
 
 - `src/msk_equivalence/`: Python package and CLI implementation. / Python 包和 CLI 实现。

@@ -100,6 +100,11 @@ class MappingConfig:
         value = self.raw.get("thresholds", {})
         return value if isinstance(value, dict) else {}
 
+    @property
+    def dynamics_experiments(self) -> dict[str, Any]:
+        value = self.raw.get("dynamics_experiments", {})
+        return value if isinstance(value, dict) else {}
+
     def opensim_names(self, key: str) -> list[str]:
         return [n for n in (_name(item, "opensim") for item in self.entries(key)) if n]
 
