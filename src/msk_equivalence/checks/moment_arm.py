@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Any
 
@@ -95,7 +96,8 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
             )
     df = write_csv(out_dir / "moment_arm_error.csv", rows)
     write_json(out_dir / "moment_arm_sign_warnings.json", {"warnings": warnings})
-    _plot(rows, out_dir)
+    if os.environ.get("MSK_EQUIVALENCE_SKIP_PLOTS") != "1":
+        _plot(rows, out_dir)
     finite = df[df["absolute_error"].apply(np.isfinite)] if not df.empty else df
     return {
         "status": "warning" if warnings else ("passed" if not finite.empty else "not evaluated"),

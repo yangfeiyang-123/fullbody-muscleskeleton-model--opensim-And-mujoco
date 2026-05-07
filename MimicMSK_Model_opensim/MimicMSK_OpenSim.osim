@@ -53,8 +53,8 @@
             <display_radius>0.004</display_radius>
           </FrameGeometry>
           <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass_center>-0.025 0.1 1</mass_center>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry />
           <WrapObjectSet>
             <components />
@@ -81,7 +81,7 @@
           </FrameGeometry>
           <mass>7.486</mass>
           <mass_center>0 0 0</mass_center>
-          <inertia>0.075 0.08 0.03 1.110223e-18 0 0</inertia>
+          <inertia>0.08 0.075 0.03 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="sacrum_geom_1">
               <components />
@@ -124,7 +124,7 @@
           </FrameGeometry>
           <mass>1.824</mass>
           <mass_center>0.053744 0.02 0</mass_center>
-          <inertia>0.01219 0.01765 0.00546 1.2123635e-18 0 0</inertia>
+          <inertia>0.01765 0.01219 0.00546 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="lumbar5_geom_1">
               <components />
@@ -433,7 +433,7 @@
           </FrameGeometry>
           <mass>1.799</mass>
           <mass_center>0.0170296 0.018 0</mass_center>
-          <inertia>0.01123 0.01643 0.0052 1.1546319e-18 0 0</inertia>
+          <inertia>0.01643 0.01123 0.0052 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="lumbar4_geom_1">
               <components />
@@ -476,7 +476,7 @@
           </FrameGeometry>
           <mass>1.67</mass>
           <mass_center>0.0136848 0.018 0</mass_center>
-          <inertia>0.01066 0.01608 0.00551 1.2034818e-18 0 0</inertia>
+          <inertia>0.01608 0.01066 0.00551 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="lumbar3_geom_1">
               <components />
@@ -519,7 +519,7 @@
           </FrameGeometry>
           <mass>1.689</mass>
           <mass_center>0.0245272 0.018 0</mass_center>
-          <inertia>0.01091 0.01682 0.00591 1.3122836e-18 0 0</inertia>
+          <inertia>0.01682 0.01091 0.00591 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="lumbar2_geom_1">
               <components />
@@ -562,7 +562,7 @@
           </FrameGeometry>
           <mass>1.677</mass>
           <mass_center>0.039 0.017 0</mass_center>
-          <inertia>0.01113 0.01753 0.0064 1.4210855e-18 0 0</inertia>
+          <inertia>0.01753 0.01113 0.0064 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="lumbar1_geom_1">
               <components />
@@ -1107,8 +1107,8 @@
             <display_radius>0.004</display_radius>
           </FrameGeometry>
           <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass_center>-0.005 -0.01 0</mass_center>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry />
           <WrapObjectSet>
             <components />
@@ -1133,9 +1133,9 @@
             </Appearance>
             <display_radius>0.004</display_radius>
           </FrameGeometry>
-          <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass>0.25114804931</mass>
+          <mass_center>-0.0170413061602 0.458010613691 0.000143403486843</mass_center>
+          <inertia>0.000201536952246 0.000199956659511 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="hat_cervical">
               <components />
@@ -1176,9 +1176,9 @@
             </Appearance>
             <display_radius>0.004</display_radius>
           </FrameGeometry>
-          <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass>2.12632042973</mass>
+          <mass_center>0.0066231018387 0.0692720839001 1.39797406539e-05</mass_center>
+          <inertia>0.00638303142896 0.00599183615452 0.00449355218554 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="hat_jaw">
               <components />
@@ -1235,8 +1235,8 @@
             <display_radius>0.004</display_radius>
           </FrameGeometry>
           <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass_center>0.02 0.37 0</mass_center>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry />
           <WrapObjectSet>
             <components />
@@ -1263,7 +1263,7 @@
           </FrameGeometry>
           <mass>0.001</mass>
           <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry />
           <WrapObjectSet>
             <components />
@@ -1290,7 +1290,7 @@
           </FrameGeometry>
           <mass>0.001</mass>
           <mass_center>-0.02118 -0.128888 -9.98087e-05</mass_center>
-          <inertia>0.074806356 0.059059797 0.047100848 0.0054220147 -2.0122438e-05 -9.9215872e-05</inertia>
+          <inertia>0.0764928 0.0573742 0.0471 0 0 0</inertia>
           <attached_geometry />
           <WrapObjectSet>
             <components />
@@ -1381,8 +1381,8 @@
             <display_radius>0.004</display_radius>
           </FrameGeometry>
           <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass_center>-0.03634 0.025 0</mass_center>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry />
           <WrapObjectSet>
             <components />
@@ -1409,7 +1409,7 @@
           </FrameGeometry>
           <mass>0.156</mass>
           <mass_center>-0.011096 0.0063723 0.054168</mass_center>
-          <inertia>4.3e-05 4.3e-05 1.5e-06 0 0 0</inertia>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="clavicle_r">
               <components />
@@ -1479,7 +1479,7 @@
           </FrameGeometry>
           <mass>0.70396</mass>
           <mass_center>-0.054694 -0.035032 -0.043734</mass_center>
-          <inertia>0.0013916359 0.0012648649 0.0013791891 0.00031892064 0.00036344312 0.00028125904</inertia>
+          <inertia>0.00199576 0.00103993 0.001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="scapula_r">
               <components />
@@ -1636,7 +1636,7 @@
           </FrameGeometry>
           <mass>1.99757</mass>
           <mass_center>0.018064 -0.140141 -0.012746</mass_center>
-          <inertia>0.012277606 0.002551327 0.012578917 -0.00034741639 -0.00023250581 0.0012292973</inertia>
+          <inertia>0.0128576 0.0121576 0.00239265 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="humerus_r">
               <components />
@@ -2239,7 +2239,7 @@
           </FrameGeometry>
           <mass>1.1053</mass>
           <mass_center>0.00971783 -0.0959509 0.024286</mass_center>
-          <inertia>0.0054139092 0.0013035734 0.0049543574 0.00030577476 -7.3187365e-05 0.0010514957</inertia>
+          <inertia>0.00543663 0.00523521 0.001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="ulna_r">
               <components />
@@ -2300,7 +2300,7 @@
           </FrameGeometry>
           <mass>0.23359</mass>
           <mass_center>0.0336341 -0.181559 0.0156</mass_center>
-          <inertia>0.001 0.001 0.001 -2.2022857e-20 -1.3552527e-20 4.319868e-20</inertia>
+          <inertia>0.001 0.001 0.001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="radius_r">
               <components />
@@ -2375,9 +2375,9 @@
             </Appearance>
             <display_radius>0.004</display_radius>
           </FrameGeometry>
-          <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass>0.16375768535</mass>
+          <mass_center>-0.000886346788985 -0.00917101794404 0.00260560954051</mass_center>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="lunate_r">
               <components />
@@ -2845,9 +2845,9 @@
             </Appearance>
             <display_radius>0.004</display_radius>
           </FrameGeometry>
-          <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass>0.00183853621117</mass>
+          <mass_center>2.49975111715e-06 -4.31973354742e-06 1.34042093255e-06</mass_center>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="capitate_r">
               <components />
@@ -2933,7 +2933,7 @@
           </FrameGeometry>
           <mass>0.016</mass>
           <mass_center>0.0078 -0.0147 -0.006</mass_center>
-          <inertia>1.2e-06 7.1e-07 1.3e-06 4.7e-07 2.5e-07 -4.1e-07</inertia>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="n_1mc_r">
               <components />
@@ -3028,7 +3028,7 @@
           </FrameGeometry>
           <mass>0.0079</mass>
           <mass_center>0.0096 -0.0163 -0.0063</mass_center>
-          <inertia>2.6e-07 7.1e-07 2.9e-07 1e-07 4e-08 -6e-08</inertia>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="thumbprox_r">
               <components />
@@ -3106,7 +3106,7 @@
           </FrameGeometry>
           <mass>0.003</mass>
           <mass_center>0.0056 -0.0104 -0.0044</mass_center>
-          <inertia>5e-08 3e-08 5e-08 1e-08 1e-08 -1e-08</inertia>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="thumbdist_r">
               <components />
@@ -4428,7 +4428,7 @@
           </FrameGeometry>
           <mass>0.156</mass>
           <mass_center>-0.011096 0.0063723 -0.054168</mass_center>
-          <inertia>4.3e-05 4.3e-05 1.5e-06 0 0 0</inertia>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="clavicle_l">
               <components />
@@ -4498,7 +4498,7 @@
           </FrameGeometry>
           <mass>0.70396</mass>
           <mass_center>-0.054694 -0.035032 0.043734</mass_center>
-          <inertia>0.0013916359 0.0012648649 0.0013791891 0.00031892064 -0.00036344312 -0.00028125904</inertia>
+          <inertia>0.00199576 0.00103993 0.001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="scapula_l">
               <components />
@@ -4655,7 +4655,7 @@
           </FrameGeometry>
           <mass>1.99757</mass>
           <mass_center>0.018064 -0.140141 0.012746</mass_center>
-          <inertia>0.012277606 0.002551327 0.012578917 -0.00034741639 0.00023250581 -0.0012292973</inertia>
+          <inertia>0.0128576 0.0121576 0.00239265 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="humerus_l">
               <components />
@@ -5258,7 +5258,7 @@
           </FrameGeometry>
           <mass>1.1053</mass>
           <mass_center>0.00971783 -0.0959509 -0.024286</mass_center>
-          <inertia>0.0054139092 0.0013035734 0.0049543574 0.00030577476 7.3187365e-05 -0.0010514957</inertia>
+          <inertia>0.00543663 0.00523521 0.001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="ulna_l">
               <components />
@@ -5319,7 +5319,7 @@
           </FrameGeometry>
           <mass>0.23359</mass>
           <mass_center>0.0336341 -0.181559 -0.0156</mass_center>
-          <inertia>0.001 0.001 0.001 -2.2022857e-20 1.3552527e-20 -4.319868e-20</inertia>
+          <inertia>0.001 0.001 0.001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="radius_l">
               <components />
@@ -5394,9 +5394,9 @@
             </Appearance>
             <display_radius>0.004</display_radius>
           </FrameGeometry>
-          <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass>0.16375768535</mass>
+          <mass_center>-0.000886346788985 -0.00917101794404 -0.00260560954051</mass_center>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="lunate_l">
               <components />
@@ -5864,9 +5864,9 @@
             </Appearance>
             <display_radius>0.004</display_radius>
           </FrameGeometry>
-          <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass>0.00183853621117</mass>
+          <mass_center>2.49975111715e-06 -4.31973354742e-06 -1.34042093255e-06</mass_center>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="capitate_l">
               <components />
@@ -5952,7 +5952,7 @@
           </FrameGeometry>
           <mass>0.016</mass>
           <mass_center>0.0078 -0.0147 0.006</mass_center>
-          <inertia>1.2e-06 7.1e-07 1.3e-06 4.7e-07 -2.5e-07 4.1e-07</inertia>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="firstmc_l">
               <components />
@@ -6047,7 +6047,7 @@
           </FrameGeometry>
           <mass>0.0079</mass>
           <mass_center>0.0096 -0.0163 0.0063</mass_center>
-          <inertia>2.6e-07 7.1e-07 2.9e-07 1e-07 -4e-08 6e-08</inertia>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="proximal_thumb_l">
               <components />
@@ -6125,7 +6125,7 @@
           </FrameGeometry>
           <mass>0.003</mass>
           <mass_center>0.0056 -0.0104 0.0044</mass_center>
-          <inertia>5e-08 3e-08 5e-08 1e-08 -1e-08 1e-08</inertia>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="distal_thumb_l">
               <components />
@@ -7572,7 +7572,7 @@
           </FrameGeometry>
           <mass>8.4</mass>
           <mass_center>0 -0.195 -0.0005</mass_center>
-          <inertia>0.1694 0.024527852 0.16939905 0 0 -0.00037144848</inertia>
+          <inertia>0.1694 0.1694 0.0245269 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="r_femur">
               <components />
@@ -7786,7 +7786,7 @@
           </FrameGeometry>
           <mass>3.8</mass>
           <mass_center>-0.005 -0.175 0.0025</mass_center>
-          <inertia>0.077101607 0.0069754882 0.077144574 -0.0020052417 2.8648746e-05 0.0010027054</inertia>
+          <inertia>0.0771589 0.0771589 0.00690387 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="r_tibia">
               <components />
@@ -7945,9 +7945,9 @@
             </Appearance>
             <display_radius>0.004</display_radius>
           </FrameGeometry>
-          <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass>0.0212064920021</mass>
+          <mass_center>0.00593728976627 0.000343512211352 -0.00168399250451</mass_center>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="r_talus">
               <components />
@@ -7990,7 +7990,7 @@
           </FrameGeometry>
           <mass>1.14</mass>
           <mass_center>0.0821377 0.0108024 -0.000944392</mass_center>
-          <inertia>0.00097118637 0.0031178393 0.0029602013 0.00020025099 0.00014789168 -1.3683763e-05</inertia>
+          <inertia>0.00313636 0.00297113 0.000941737 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="r_foot">
               <components />
@@ -8031,9 +8031,9 @@
             </Appearance>
             <display_radius>0.004</display_radius>
           </FrameGeometry>
-          <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass>0.0422843151791</mass>
+          <mass_center>0.0190640069218 -0.00141530181656 0.00963988544353</mass_center>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="r_bofoot">
               <components />
@@ -8074,9 +8074,9 @@
             </Appearance>
             <display_radius>0.004</display_radius>
           </FrameGeometry>
-          <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass>0.0278528602913</mass>
+          <mass_center>0.0024746672472 0.0279666977488 0.000739698554574</mass_center>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="r_patella">
               <components />
@@ -8119,7 +8119,7 @@
           </FrameGeometry>
           <mass>8.4</mass>
           <mass_center>0 -0.195 0.0005</mass_center>
-          <inertia>0.1694 0.024527852 0.16939905 0 0 0.00037144848</inertia>
+          <inertia>0.1694 0.1694 0.0245269 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="l_femur">
               <components />
@@ -8333,7 +8333,7 @@
           </FrameGeometry>
           <mass>3.8</mass>
           <mass_center>-0.005 -0.175 -0.0025</mass_center>
-          <inertia>0.077101607 0.0069754856 0.077144577 -0.002005239 -2.8646262e-05 -0.0010026199</inertia>
+          <inertia>0.0771589 0.0771589 0.00690387 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="l_tibia">
               <components />
@@ -8492,9 +8492,9 @@
             </Appearance>
             <display_radius>0.004</display_radius>
           </FrameGeometry>
-          <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass>0.0212064920021</mass>
+          <mass_center>0.00593728976627 0.000343512211352 0.00168399250451</mass_center>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="l_talus">
               <components />
@@ -8537,7 +8537,7 @@
           </FrameGeometry>
           <mass>1.14</mass>
           <mass_center>0.0821377 0.0108024 0.000944392</mass_center>
-          <inertia>0.00097118637 0.0031178393 0.0029602013 0.00020025099 -0.00014789168 1.3683763e-05</inertia>
+          <inertia>0.00313636 0.00297113 0.000941737 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="l_foot">
               <components />
@@ -8578,9 +8578,9 @@
             </Appearance>
             <display_radius>0.004</display_radius>
           </FrameGeometry>
-          <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass>0.0422843151791</mass>
+          <mass_center>0.0190640069218 -0.00141530181656 -0.00963988544353</mass_center>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="l_bofoot">
               <components />
@@ -8621,9 +8621,9 @@
             </Appearance>
             <display_radius>0.004</display_radius>
           </FrameGeometry>
-          <mass>0.001</mass>
-          <mass_center>0 0 0</mass_center>
-          <inertia>1e-06 1e-06 1e-06 0 0 0</inertia>
+          <mass>0.0278528602913</mass>
+          <mass_center>0.0024746672472 0.0279666977488 -0.000739698554574</mass_center>
+          <inertia>0.0001 0.0001 0.0001 0 0 0</inertia>
           <attached_geometry>
             <Mesh name="l_patella">
               <components />
@@ -8671,7 +8671,7 @@
             </Coordinate>
             <Coordinate name="root_ty">
               <components />
-              <default_value>0.825</default_value>
+              <default_value>0</default_value>
               <default_speed_value>0</default_speed_value>
               <range>-100 100</range>
               <clamped>false</clamped>
@@ -8693,7 +8693,7 @@
             </Coordinate>
             <Coordinate name="root_rx">
               <components />
-              <default_value>-1.5707963</default_value>
+              <default_value>0</default_value>
               <default_speed_value>0</default_speed_value>
               <range>-6.2831853 6.2831853</range>
               <clamped>false</clamped>
@@ -8938,7 +8938,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -9014,7 +9014,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="L4_L5_LB">
               <components />
@@ -9025,7 +9025,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="L4_L5_AR">
               <components />
@@ -9036,7 +9036,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -9112,7 +9112,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="L3_L4_LB">
               <components />
@@ -9123,7 +9123,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="L3_L4_AR">
               <components />
@@ -9134,7 +9134,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -9210,7 +9210,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="L2_L3_LB">
               <components />
@@ -9221,7 +9221,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="L2_L3_AR">
               <components />
@@ -9232,7 +9232,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -9308,7 +9308,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="L1_L2_LB">
               <components />
@@ -9319,7 +9319,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="L1_L2_AR">
               <components />
@@ -9330,7 +9330,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -9566,7 +9566,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="sternoclavicular_r3_r">
               <components />
@@ -9577,7 +9577,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -9653,7 +9653,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="unrotscap_r2_r">
               <components />
@@ -9664,7 +9664,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -9740,7 +9740,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="acromioclavicular_r3_r">
               <components />
@@ -9751,7 +9751,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="acromioclavicular_r1_r">
               <components />
@@ -9762,7 +9762,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -9838,7 +9838,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="unrothum_r3_r">
               <components />
@@ -9849,7 +9849,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="unrothum_r2_r">
               <components />
@@ -9860,7 +9860,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -10023,7 +10023,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -11829,7 +11829,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="sternoclavicular_r3_l">
               <components />
@@ -11840,7 +11840,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -11916,7 +11916,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="unrotscap_r2_l">
               <components />
@@ -11927,7 +11927,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -12003,7 +12003,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="acromioclavicular_r3_l">
               <components />
@@ -12014,7 +12014,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="acromioclavicular_r1_l">
               <components />
@@ -12025,7 +12025,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -12101,7 +12101,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="unrothum_r3_l">
               <components />
@@ -12112,7 +12112,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="unrothum_r2_l">
               <components />
@@ -12123,7 +12123,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -12286,7 +12286,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -14210,7 +14210,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="knee_angle_translation1_r">
               <components />
@@ -14221,7 +14221,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="knee_angle_r">
               <components />
@@ -14243,7 +14243,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="knee_angle_rotation3_r">
               <components />
@@ -14254,7 +14254,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -14558,7 +14558,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="knee_angle_beta_translation1_r">
               <components />
@@ -14569,7 +14569,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="knee_angle_beta_rotation1_r">
               <components />
@@ -14580,7 +14580,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -14754,7 +14754,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="knee_angle_translation1_l">
               <components />
@@ -14765,7 +14765,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="knee_angle_l">
               <components />
@@ -14787,7 +14787,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="knee_angle_rotation3_l">
               <components />
@@ -14798,7 +14798,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
@@ -15102,7 +15102,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="knee_angle_beta_translation1_l">
               <components />
@@ -15113,7 +15113,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
             <Coordinate name="knee_angle_beta_rotation1_l">
               <components />
@@ -15124,7 +15124,7 @@
               <locked>false</locked>
               <prescribed_function />
               <prescribed>false</prescribed>
-              <is_free_to_satisfy_constraints>false</is_free_to_satisfy_constraints>
+              <is_free_to_satisfy_constraints>true</is_free_to_satisfy_constraints>
             </Coordinate>
           </coordinates>
           <frames>
