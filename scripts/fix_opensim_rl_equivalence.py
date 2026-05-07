@@ -89,6 +89,14 @@ def sync_body_inertials(text: str) -> tuple[str, int]:
     return text, changed
 
 
+def deactivate_wrap_objects(text: str) -> tuple[str, int]:
+    pattern = re.compile(
+        r"(<Wrap(?:Sphere|Cylinder|Torus|Ellipsoid)\b[^>]*>\s*<components />\s*<active>)true(</active>)",
+        re.DOTALL,
+    )
+    return pattern.subn(r"\g<1>false\g<2>", text)
+
+
 def main() -> None:
     text = OSIM.read_text()
 
@@ -125,12 +133,14 @@ def main() -> None:
         raise RuntimeError(f"Failed to update dependent coordinates: {', '.join(missing)}")
 
     text, inertial_count = sync_body_inertials(text)
+    text, wrap_count = deactivate_wrap_objects(text)
 
     OSIM.write_text(text)
     print(f"updated {OSIM}")
     print("root defaults updated:", ", ".join(root_updates))
     print(f"dependent coordinates marked free-to-satisfy constraints: {changed}")
     print(f"body inertials synchronized from MuJoCo: {inertial_count}")
+    print(f"OpenSim wrap objects deactivated to match MuJoCo neutral tendon geometry: {wrap_count}")
 
 
 if __name__ == "__main__":
