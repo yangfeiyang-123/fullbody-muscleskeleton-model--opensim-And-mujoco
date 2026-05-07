@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Any
 
@@ -7,7 +8,7 @@ import numpy as np
 
 from msk_equivalence.checks.kinematics import _pose_values
 from msk_equivalence.mapping import MappingConfig
-from msk_equivalence.utils import correlation, ensure_dir, rel_error, write_csv
+from msk_equivalence.utils import correlation, ensure_dir, rel_error, status_from_errors, write_csv
 
 
 def _plot(rows: list[dict[str, Any]], out_dir: Path) -> None:
@@ -67,12 +68,18 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
                 }
             )
     df = write_csv(out_dir / "muscle_length_error.csv", rows)
-    _plot(rows, out_dir)
+    if os.environ.get("MSK_EQUIVALENCE_SKIP_PLOTS") != "1":
+        _plot(rows, out_dir)
     finite = df[df["absolute_error"].apply(np.isfinite)] if not df.empty else df
+    max_error = float(finite["absolute_error"].max()) if not finite.empty else None
+    warn = float(mapping.thresholds.get("muscle_length_warning_m", 0.005))
+    fail = float(mapping.thresholds.get("muscle_length_fail_m", 0.05))
     return {
-        "status": "passed" if not finite.empty else "not evaluated",
+        "status": status_from_errors(max_error, warn, fail),
         "mean_abs_error": float(finite["absolute_error"].mean()) if not finite.empty else None,
-        "max_error": float(finite["absolute_error"].max()) if not finite.empty else None,
+        "max_error": max_error,
         "correlation": correlation(finite["opensim_length"], finite["mujoco_length"]) if not finite.empty else None,
+        "warning_threshold_m": warn,
+        "failure_threshold_m": fail,
         "files": ["muscle_length_error.csv", "plots/muscle_length/"],
     }

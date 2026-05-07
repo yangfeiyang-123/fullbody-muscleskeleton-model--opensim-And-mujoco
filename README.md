@@ -179,6 +179,35 @@ python3 -m msk_equivalence.compare \
   --out results/equivalence_report
 ```
 
+## Equivalence Gate / 等价性门控
+
+For training or regression checks, run the comparison as a gate. The command exits with code `1` unless the configured verdict is `equivalent`:
+
+训练前或回归测试时，可以把比较工具当作门控运行。如果最终 verdict 不是 `equivalent`，命令会以退出码 `1` 结束：
+
+```bash
+PYTHONPATH=src MSK_EQUIVALENCE_SKIP_PLOTS=1 python3 -m msk_equivalence.compare \
+  --osim MimicMSK_Model_opensim/MimicMSK_OpenSim.osim \
+  --mjcf MimicMSK_Model_mujoco/body/myofullbody.xml \
+  --mapping configs/model_mapping.yaml \
+  --out results/equivalence_report \
+  --fail-on-gate
+```
+
+The gate is layered:
+
+门控按层级判断：
+
+- Level 0: topology and naming coverage. / 拓扑和命名覆盖。
+- Level 1: rigid-body kinematics, marker/site positions and COM. / 刚体运动学、marker/site 和质心。
+- Level 2: muscle-tendon length and direct independent-coordinate moment arms. / 肌肉-肌腱长度和独立坐标力臂。
+- Level 3: mass, COM, inertia and dynamics adapters when configured. / 质量、质心、惯性以及已配置的动力学适配器。
+- Level 4: task-level contact and forward behavior when adapters are implemented. / 接触和正向任务行为。
+
+Dependent coordinates from OpenSim `CoordinateCouplerConstraint` are reported in `moment_arm_error.csv`, but they are not used as direct moment-arm pass/fail gates because they require constraint-chain-aware validation.
+
+OpenSim `CoordinateCouplerConstraint` 的依赖坐标会记录在 `moment_arm_error.csv` 中，但不会作为直接力臂通过/失败门控，因为它们需要基于约束链式关系的验证。
+
 You can run a subset of checks:
 
 你可以只运行部分检查：

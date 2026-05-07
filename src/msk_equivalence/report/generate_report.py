@@ -38,11 +38,38 @@ def _problem_lines(results: dict[str, dict[str, Any]]) -> list[str]:
     return lines or ["- No major issues recorded by automated checks."]
 
 
+def _verdict(levels: list[dict[str, Any]]) -> dict[str, str]:
+    statuses = {item["level"]: item["status"] for item in levels}
+    if any(status == "failed" for status in statuses.values()):
+        return {
+            "status": "not equivalent",
+            "reason": "At least one equivalence gate failed. Do not treat the models as interchangeable for RL or dynamics analysis.",
+        }
+    core = [statuses.get("Level 0"), statuses.get("Level 1"), statuses.get("Level 2"), statuses.get("Level 3")]
+    if all(status == "passed" for status in core):
+        if statuses.get("Level 4") == "passed":
+            return {"status": "equivalent", "reason": "All configured structural, geometric, dynamic and task-behavior gates passed."}
+        return {
+            "status": "dynamics equivalent; task behavior pending",
+            "reason": "Core model gates passed, but task-level behavior checks are not fully passed.",
+        }
+    if statuses.get("Level 0") in {"passed", "warning"} and statuses.get("Level 1") == "passed":
+        return {
+            "status": "partially equivalent",
+            "reason": "Rigid-body kinematics are usable, but muscle geometry, dynamics, or behavior gates still need work.",
+        }
+    return {
+        "status": "not established",
+        "reason": "Insufficient passed gates to claim equivalence.",
+    }
+
+
 def generate(out_dir: Path, results: dict[str, dict[str, Any]], inputs: dict[str, str]) -> dict[str, Any]:
     levels = []
     for code, title, checks in LEVELS:
         levels.append({"level": code, "title": title, "status": _level_status(results, checks), "checks": checks})
-    summary = {"inputs": inputs, "levels": levels, "checks": results}
+    verdict = _verdict(levels)
+    summary = {"inputs": inputs, "verdict": verdict, "levels": levels, "checks": results}
     write_json(out_dir / "summary.json", summary)
 
     md = [
@@ -53,6 +80,11 @@ def generate(out_dir: Path, results: dict[str, dict[str, Any]], inputs: dict[str
         f"- OpenSim: `{inputs.get('osim')}`",
         f"- MuJoCo: `{inputs.get('mjcf')}`",
         f"- Mapping: `{inputs.get('mapping')}`",
+        "",
+        "## Equivalence Verdict",
+        "",
+        f"- status: `{verdict['status']}`",
+        f"- reason: {verdict['reason']}",
         "",
         "## Layered Judgment",
         "",

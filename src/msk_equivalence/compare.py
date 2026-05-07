@@ -38,6 +38,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--mapping", required=True, type=Path, help="Path to model_mapping.yaml.")
     parser.add_argument("--out", required=True, type=Path, help="Output directory for the report.")
     parser.add_argument("--checks", nargs="*", default=DEFAULT_CHECKS, help="Check module names to run. Defaults to all checks.")
+    parser.add_argument("--fail-on-gate", action="store_true", help="Return exit code 1 when the equivalence verdict is not equivalent.")
     parser.add_argument("--verbose", action="store_true", help="Enable debug logging.")
     return parser.parse_args()
 
@@ -67,12 +68,15 @@ def main() -> int:
     results: dict[str, dict[str, Any]] = {}
     for check in args.checks:
         results[check] = run_check(check, osim, mjcf, mapping, out_dir, logger)
-    generate(
+    summary = generate(
         out_dir,
         results,
         {"osim": str(args.osim), "mjcf": str(args.mjcf), "mapping": str(args.mapping), "out": str(args.out)},
     )
     logger.info("Report written to %s", out_dir / "index.md")
+    if args.fail_on_gate and summary.get("verdict", {}).get("status") != "equivalent":
+        logger.error("Equivalence gate did not pass: %s", summary.get("verdict", {}).get("status"))
+        return 1
     return 0
 
 

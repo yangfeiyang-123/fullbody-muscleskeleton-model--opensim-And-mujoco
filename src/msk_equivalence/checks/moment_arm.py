@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import re
 from pathlib import Path
 from typing import Any
 
@@ -55,10 +56,37 @@ def _pairs(mapping: MappingConfig) -> list[tuple[dict[str, Any], dict[str, Any]]
     return [(m, c) for m in mapping.muscles for c in mapping.coordinates]
 
 
+def _dependent_coordinates(osim: Any) -> set[str]:
+    path = getattr(osim, "path", None)
+    if path is None:
+        return set()
+    try:
+        text = Path(path).read_text(encoding="utf-8")
+    except Exception:
+        return set()
+    return {item.strip() for item in re.findall(r"<dependent_coordinate_name>(.*?)</dependent_coordinate_name>", text)}
+
+
+def _status(max_error: float | None, corr: float, sign_warnings: int, mapping: MappingConfig) -> str:
+    if max_error is None or not np.isfinite(max_error):
+        return "not evaluated"
+    fail = float(mapping.thresholds.get("moment_arm_independent_fail_m", 0.1))
+    warn = float(mapping.thresholds.get("moment_arm_independent_warning_m", mapping.thresholds.get("moment_arm_warning_m", 0.005)))
+    corr_fail = float(mapping.thresholds.get("moment_arm_correlation_fail", 0.9))
+    corr_warn = float(mapping.thresholds.get("moment_arm_correlation_warning", 0.98))
+    if max_error > fail or (np.isfinite(corr) and corr < corr_fail):
+        return "failed"
+    if max_error > warn or sign_warnings > 0 or (np.isfinite(corr) and corr < corr_warn):
+        return "warning"
+    return "passed"
+
+
 def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str, Any]:
     eps = float(mapping.thresholds.get("moment_arm_fd_epsilon", 1e-6))
+    dependent = _dependent_coordinates(osim)
     rows = []
     warnings = []
+    direct_warnings = []
     for sample in mapping.pose_samples:
         sample_name = str(sample.get("name", "sample"))
         osim.set_pose(_pose_values(sample, mapping, "opensim"))
@@ -68,6 +96,7 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
             mt = mapping.side_name(muscle, "mujoco")
             oc = mapping.side_name(coord, "opensim")
             mq = mapping.side_name(coord, "mujoco")
+            role = "dependent" if oc in dependent else "independent"
             try:
                 ora = osim.moment_arm(om, oc)
                 mra = mjcf.moment_arm_numeric(mt, mq, eps=eps)
@@ -75,7 +104,10 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
                 sign_consistent = np.sign(ora) == np.sign(mra) or abs(ora) < 1e-9 or abs(mra) < 1e-9
                 status = "evaluated"
                 if not sign_consistent:
-                    warnings.append({"sample": sample_name, "muscle": om, "coordinate": oc, "opensim": ora, "mujoco": mra})
+                    item = {"sample": sample_name, "muscle": om, "coordinate": oc, "role": role, "opensim": ora, "mujoco": mra}
+                    warnings.append(item)
+                    if role == "independent":
+                        direct_warnings.append(item)
             except Exception as exc:
                 ora = mra = err = np.nan
                 sign_consistent = None
@@ -91,6 +123,7 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
                     "mujoco_moment_arm": mra,
                     "absolute_error": err,
                     "sign_consistent": sign_consistent,
+                    "coordinate_role": role,
                     "status": status,
                 }
             )
@@ -99,11 +132,22 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
     if os.environ.get("MSK_EQUIVALENCE_SKIP_PLOTS") != "1":
         _plot(rows, out_dir)
     finite = df[df["absolute_error"].apply(np.isfinite)] if not df.empty else df
+    direct = finite[finite["coordinate_role"] == "independent"] if not finite.empty else finite
+    dependent_rows = finite[finite["coordinate_role"] == "dependent"] if not finite.empty else finite
+    direct_corr = correlation(direct["opensim_moment_arm"], direct["mujoco_moment_arm"]) if not direct.empty else np.nan
+    direct_max = float(direct["absolute_error"].max()) if not direct.empty else None
+    direct_sign_count = len(direct_warnings)
     return {
-        "status": "warning" if warnings else ("passed" if not finite.empty else "not evaluated"),
+        "status": _status(direct_max, direct_corr, direct_sign_count, mapping),
         "max_error": float(finite["absolute_error"].max()) if not finite.empty else None,
         "rmse": rmse(finite["absolute_error"]) if not finite.empty else None,
         "correlation": correlation(finite["opensim_moment_arm"], finite["mujoco_moment_arm"]) if not finite.empty else None,
         "sign_warning_count": len(warnings),
+        "direct_independent_max_error": direct_max,
+        "direct_independent_rmse": rmse(direct["absolute_error"]) if not direct.empty else None,
+        "direct_independent_correlation": direct_corr,
+        "direct_independent_sign_warning_count": direct_sign_count,
+        "dependent_coordinate_pair_count": int(len(dependent_rows)),
+        "note": "Status gates direct independent-coordinate moment arms only. Dependent coordinates are recorded but require constraint-chain-aware validation.",
         "files": ["moment_arm_error.csv", "moment_arm_sign_warnings.json", "plots/moment_arm/"],
     }

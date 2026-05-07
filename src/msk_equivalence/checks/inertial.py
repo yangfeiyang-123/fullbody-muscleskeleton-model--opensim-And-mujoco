@@ -6,7 +6,7 @@ from typing import Any
 import numpy as np
 
 from msk_equivalence.mapping import MappingConfig
-from msk_equivalence.utils import norm_error, rel_error, write_csv, write_json
+from msk_equivalence.utils import norm_error, rel_error, status_from_errors, write_csv, write_json
 
 
 def _by_name(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
@@ -53,4 +53,12 @@ def run(osim: Any, mjcf: Any, mapping: MappingConfig, out_dir: Path) -> dict[str
     }
     write_json(out_dir / "total_mass_comparison.json", payload)
     max_mass_error = float(df["mass_abs_error"].max()) if not df.empty else np.nan
-    return {"status": "passed" if np.isfinite(max_mass_error) else "not evaluated", "max_segment_mass_error": max_mass_error, "files": ["inertial_body_comparison.csv", "total_mass_comparison.json"]}
+    warn = float(mapping.thresholds.get("segment_mass_warning_kg", 1e-6))
+    fail = float(mapping.thresholds.get("segment_mass_fail_kg", 1e-3))
+    return {
+        "status": status_from_errors(max_mass_error, warn, fail),
+        "max_segment_mass_error": max_mass_error,
+        "warning_threshold_kg": warn,
+        "failure_threshold_kg": fail,
+        "files": ["inertial_body_comparison.csv", "total_mass_comparison.json"],
+    }
