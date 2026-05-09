@@ -47,7 +47,7 @@ def _activation_values(mapping: MappingConfig) -> list[float]:
 
 
 def _calibration_values() -> list[float]:
-    return [0.0, 0.05, 0.1, 0.25, 0.5, 0.75, 1.0]
+    return [float(v) for v in np.linspace(0.0, 1.0, 21)]
 
 
 def _set_opensim_activations(osim: Any, active_muscle: str | None, activation: float) -> None:

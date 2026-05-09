@@ -2,13 +2,14 @@
 
 This protocol defines the experiments required before claiming that `MimicMSK_OpenSim.osim` is dynamically equivalent to the MuJoCo `myofullbody.xml` model for RL training.
 
-The current repository passes Level 1 kinematics, Level 2 neutral muscle geometry, the configured Level 3 static force/torque gates, and the configured Level 4 contact inventory plus no-contact instant-acceleration gates.
+The current repository passes the earlier configured Level 1, Level 2, and Level 3 gates, but the stricter Level 3.5 generalized-torque decomposition and Level 4 random-activation / short-rollout gates do not yet pass. The model must not be described as a validated MuJoCo counterpart until those gates pass on the stated distributions.
 
 ## Claim Map
 
 | Claim | Minimum evidence | Blocking checks |
 | --- | --- | --- |
 | L3 dynamic equivalence | Matched states produce matched inverse dynamics, muscle-generated generalized torques and passive generalized torques. | `inertial`, `inverse_dynamics`, `muscle_torque`, `passive_forces` |
+| L3.5 generalized torque equivalence | Sparse/group/random activations produce matched independent-coordinate active generalized torque after constraint-chain projection. | `generalized_torque` |
 | L4 behavior equivalence | Matched initial states and controls produce bounded short-horizon rollout drift, and contact behavior is comparable under controlled probes. | `contact`, `forward_dynamics` |
 
 Do not use long RL rollouts as the primary equivalence proof. Long rollouts amplify small numerical differences and are useful only after short-horizon gates are stable.
@@ -97,6 +98,16 @@ The adapter must reject a sample if it sets only one side of a constrained coord
 - Pass gate: slope correlation >= `0.98`; sign must match.
 
 ## Level 4: Behavior Equivalence
+
+Before running Level 4, Level 3.5 must pass. The current `generalized_torque` check writes:
+
+- `diagnostics/random_activation_torque_errors.csv`
+- `diagnostics/per_coordinate_torque_decomposition.csv`
+- `diagnostics/per_muscle_contribution_worst_rows.csv`
+- `diagnostics/inertia_amplification_report.csv`
+- `diagnostics/active_muscles_in_failing_vectors.csv`
+
+Current strict result: Level 3.5 fails with max active generalized-torque error about `4.51 Nm`; the worst row is `semimem_r` on `knee_angle_r`. The previous much larger knee torque error was reduced by making the check constraint-chain-aware, so dependent-coordinate projection is mandatory for all future torque claims.
 
 ### L4-C-01: Contact Inventory and Parameter Review
 
@@ -189,8 +200,11 @@ Level 3 can be `passed` only when:
 
 Level 4 can be `passed` only when:
 
-- Level 3 is already `passed`;
+- Level 3 and Level 3.5 are already `passed`;
 - RL-relevant contact pairs are mapped to OpenSim contact geometries;
-- the no-contact instant-acceleration gate passes under matched neutral state and zero controls.
+- the no-contact instant-acceleration gate passes under matched neutral state and zero controls;
+- sparse random activation qacc passes;
+- no-contact short rollout passes;
+- RL action/state distribution rollout passes if RL interchangeability is claimed.
 
-At the current state, the configured report marks Level 4 as `passed`. Contact probe grids and short rollouts remain recommended follow-up experiments before relying on long-horizon RL interchangeability under aggressive contact-rich motions.
+At the current state, strict Level 4 is `failed`. Contact probe grids and contact rollouts remain separate claims. Passing no-contact Level 4 does not imply contact equivalence, and none of these tests imply arbitrary long-time bitwise identity because OpenSim and MuJoCo use different integrators, constraint handling, contact semantics, and MuJoCo joint armature regularization.

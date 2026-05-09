@@ -2186,7 +2186,7 @@
               </WrapCylinder>
               <WrapSphere name="Elbow_PT_ECRL_wrap_Elbow_PT_ECRL_site_ECRL_side">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>0 0 0</xyz_body_rotation>
                 <translation>-0.005 -0.3 0.005</translation>
                 <quadrant>+z</quadrant>
@@ -2567,7 +2567,7 @@
               </WrapCylinder>
               <WrapCylinder name="FDP_ellipsoid_wrap_FDP_ellipsoid_site_FDP2_side">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-1.46747 1.37 0.121824</xyz_body_rotation>
                 <translation>-0.0022 -0.0069 0.0182</translation>
                 <quadrant>+x</quadrant>
@@ -3258,7 +3258,7 @@
             <objects>
               <WrapCylinder name="n_2ndmcp_ellipsoid_wrap_2ndmcp_ellipsoid_site_FDP2_side">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>0.84927721 -1.3355259 1.3381439</xyz_body_rotation>
                 <translation>0.0058 -0.0314 0.0007</translation>
                 <quadrant>-x</quadrant>
@@ -5205,7 +5205,7 @@
               </WrapCylinder>
               <WrapSphere name="Elbow_PT_ECRL_wrap_left_Elbow_PT_ECRL_site_ECRL_side_left">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>0 0 0</xyz_body_rotation>
                 <translation>-0.005 -0.3 -0.005</translation>
                 <quadrant>-z</quadrant>
@@ -5359,7 +5359,7 @@
               </WrapCylinder>
               <WrapSphere name="ECU_torus_wrap_left_ECU_torus_site_ECU_side_left">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>0.98663437 0.14887627 0.22270365</xyz_body_rotation>
                 <translation>-0.0163 -0.2417 -0.0349</translation>
                 <quadrant>Unassigned</quadrant>
@@ -6277,7 +6277,7 @@
             <objects>
               <WrapCylinder name="n_2ndmcp_ellipsoid_wrap_left_2ndmcp_ellipsoid_site_FDP2_side_left">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-0.84927721 1.3355259 -1.3381439</xyz_body_rotation>
                 <translation>0.0058 -0.0314 -0.0007</translation>
                 <quadrant>+x</quadrant>
@@ -7595,7 +7595,7 @@
             <objects>
               <WrapCylinder name="AB_at_femshaft_r_wrap_AB_at_femshaft_r_site_addbrev_r_side">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>1.6615708 0.18664405 -5.6089721e-08</xyz_body_rotation>
                 <translation>0.0146434 -0.112595 0.023365</translation>
                 <quadrant>-x</quadrant>
@@ -7663,7 +7663,7 @@
               </WrapCylinder>
               <WrapCylinder name="AMmid_at_femshaft_r_wrap_AMmid_at_femshaft_r_site_addmagMid_r_side">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>1.6113897 0.13656004 -6.0497876e-08</xyz_body_rotation>
                 <translation>0.0230125 -0.160711 0.0205842</translation>
                 <quadrant>-z</quadrant>
@@ -7680,7 +7680,7 @@
               </WrapCylinder>
               <WrapCylinder name="AMprox_at_femshaft_r_wrap_AMprox_at_femshaft_r_site_addmagProx_r_side">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>1.6112603 0.18655995 -1.0239666e-08</xyz_body_rotation>
                 <translation>0.00518299 -0.0728948 0.025403</translation>
                 <quadrant>-x</quadrant>
@@ -7892,7 +7892,7 @@
               </WrapCylinder>
               <WrapCylinder name="SM_at_condyles_r_wrap_SM_at_condyles_r_site_semimem_r_side">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>0 -0.10000009 0</xyz_body_rotation>
                 <translation>-0.001 -0.02 0</translation>
                 <quadrant>-x</quadrant>
@@ -8142,7 +8142,7 @@
             <objects>
               <WrapCylinder name="AB_at_femshaft_l_wrap_AB_at_femshaft_l_site_addbrev_l_side">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-1.6615708 -0.18664405 -5.6089721e-08</xyz_body_rotation>
                 <translation>0.0146434 -0.112595 -0.023365</translation>
                 <quadrant>-x</quadrant>
@@ -8210,7 +8210,7 @@
               </WrapCylinder>
               <WrapCylinder name="AMmid_at_femshaft_l_wrap_AMmid_at_femshaft_l_site_addmagMid_l_side">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-1.6113897 -0.13656004 -6.0497876e-08</xyz_body_rotation>
                 <translation>0.0230125 -0.160711 -0.0205842</translation>
                 <quadrant>+z</quadrant>
@@ -8227,7 +8227,7 @@
               </WrapCylinder>
               <WrapCylinder name="AMprox_at_femshaft_l_wrap_AMprox_at_femshaft_l_site_addmagProx_l_side">
                 <components />
-                <active>false</active>
+                <active>true</active>
                 <xyz_body_rotation>-1.6112603 -0.18655995 -1.0239666e-08</xyz_body_rotation>
                 <translation>0.00518299 -0.0728948 -0.025403</translation>
                 <quadrant>-x</quadrant>
@@ -32933,7 +32933,7 @@
           <min_control>0.01</min_control>
           <max_control>1</max_control>
           <optimal_force>42.4693</optimal_force>
-          <max_isometric_force>244.982014905</max_isometric_force>
+          <max_isometric_force>368.0</max_isometric_force>
           <optimal_fiber_length>0.1036115</optimal_fiber_length>
           <tendon_slack_length>0.126563336795</tendon_slack_length>
           <pennation_angle_at_optimal>0</pennation_angle_at_optimal>
@@ -33185,7 +33185,7 @@
           <min_control>0.01</min_control>
           <max_control>1</max_control>
           <optimal_force>42.4693</optimal_force>
-          <max_isometric_force>244.982014905</max_isometric_force>
+          <max_isometric_force>368.0</max_isometric_force>
           <optimal_fiber_length>0.1036115</optimal_fiber_length>
           <tendon_slack_length>0.126563336795</tendon_slack_length>
           <pennation_angle_at_optimal>0</pennation_angle_at_optimal>
@@ -39226,7 +39226,7 @@
                 <PathPoint name="PECM1_p2">
                   <components />
                   <socket_parent_frame>/bodyset/humerus_r</socket_parent_frame>
-                  <location>0.0210522 -0.01996 0.00793506</location>
+                  <location>0.0171422 -0.01792 0.00793506</location>
                 </PathPoint>
                 <PathPoint name="PECM1_p3">
                   <components />
@@ -40395,12 +40395,12 @@
                 <PathPoint name="ECRL_p3">
                   <components />
                   <socket_parent_frame>/bodyset/radius_r</socket_parent_frame>
-                  <location>0.0424 -0.2368 0.0362</location>
+                  <location>0.0424 -0.2368 0.0372888</location>
                 </PathPoint>
                 <PathPoint name="ECRL_p4">
                   <components />
                   <socket_parent_frame>/bodyset/secondmc_r</socket_parent_frame>
-                  <location>0.0025 0.0164 0.0008</location>
+                  <location>0.00157124 0.0164 0.0008</location>
                 </PathPoint>
               </objects>
               <groups />
@@ -42559,12 +42559,12 @@
                 <PathPoint name="FPL_p7">
                   <components />
                   <socket_parent_frame>/bodyset/firstmc_r</socket_parent_frame>
-                  <location>0.0021 -0.023 -0.0096</location>
+                  <location>0.00656255 -0.023 -0.0096</location>
                 </PathPoint>
                 <PathPoint name="FPL_p8">
                   <components />
                   <socket_parent_frame>/bodyset/proximal_thumb_r</socket_parent_frame>
-                  <location>-0.0045 -0.0184 -0.0051</location>
+                  <location>-0.00122648 -0.0184 -0.0051</location>
                 </PathPoint>
                 <PathPoint name="FPL_p9">
                   <components />
@@ -44096,7 +44096,7 @@
                 <PathPoint name="PECM1_left_p2">
                   <components />
                   <socket_parent_frame>/bodyset/humerus_l</socket_parent_frame>
-                  <location>0.0210522 -0.01996 -0.00793506</location>
+                  <location>0.0171422 -0.01792 -0.00793506</location>
                 </PathPoint>
                 <PathPoint name="PECM1_left_p3">
                   <components />
@@ -45265,12 +45265,12 @@
                 <PathPoint name="ECRL_left_p3">
                   <components />
                   <socket_parent_frame>/bodyset/radius_l</socket_parent_frame>
-                  <location>0.0424 -0.2368 -0.0362</location>
+                  <location>0.0424 -0.2368 -0.0372888</location>
                 </PathPoint>
                 <PathPoint name="ECRL_left_p4">
                   <components />
                   <socket_parent_frame>/bodyset/secondmc_l</socket_parent_frame>
-                  <location>0.0025 0.0164 -0.0008</location>
+                  <location>0.00157124 0.0164 -0.0008</location>
                 </PathPoint>
               </objects>
               <groups />
@@ -45475,6 +45475,11 @@
                   <components />
                   <socket_parent_frame>/bodyset/radius_l</socket_parent_frame>
                   <location>0.0211 -0.2194 -0.0013</location>
+                </PathPoint>
+                <PathPoint name="FCR_left_p2_sidesite">
+                  <components />
+                  <socket_parent_frame>/bodyset/lunate_l</socket_parent_frame>
+                  <location>0.0042 -0.0045 0.019</location>
                 </PathPoint>
                 <PathPoint name="FCR_left_p3">
                   <components />
@@ -47429,12 +47434,12 @@
                 <PathPoint name="FPL_left_p7">
                   <components />
                   <socket_parent_frame>/bodyset/firstmc_l</socket_parent_frame>
-                  <location>0.0021 -0.023 0.0096</location>
+                  <location>0.00656255 -0.023 0.0096</location>
                 </PathPoint>
                 <PathPoint name="FPL_left_p8">
                   <components />
                   <socket_parent_frame>/bodyset/proximal_thumb_l</socket_parent_frame>
-                  <location>-0.0045 -0.0184 0.0051</location>
+                  <location>-0.00122648 -0.0184 0.0051</location>
                 </PathPoint>
                 <PathPoint name="FPL_left_p9">
                   <components />
@@ -48564,7 +48569,7 @@
                 <PathPoint name="addmagDist_r_p2">
                   <components />
                   <socket_parent_frame>/bodyset/femur_r</socket_parent_frame>
-                  <location>0.0112 -0.2625 0.0193</location>
+                  <location>0.00774443 -0.2625 0.0190252</location>
                 </PathPoint>
               </objects>
               <groups />
@@ -48620,7 +48625,7 @@
                 <PathPoint name="addmagIsch_r_p2">
                   <components />
                   <socket_parent_frame>/bodyset/femur_r</socket_parent_frame>
-                  <location>0.0048 -0.388 -0.0327</location>
+                  <location>0.00665 -0.388 -0.0382</location>
                 </PathPoint>
               </objects>
               <groups />
@@ -50970,7 +50975,7 @@
                 <PathPoint name="addmagDist_l_p2">
                   <components />
                   <socket_parent_frame>/bodyset/femur_l</socket_parent_frame>
-                  <location>0.0112 -0.2625 -0.0193</location>
+                  <location>0.00774443 -0.2625 -0.0190252</location>
                 </PathPoint>
               </objects>
               <groups />
@@ -51026,7 +51031,7 @@
                 <PathPoint name="addmagIsch_l_p2">
                   <components />
                   <socket_parent_frame>/bodyset/femur_l</socket_parent_frame>
-                  <location>0.0048 -0.388 0.0327</location>
+                  <location>0.00665 -0.388 0.0382</location>
                 </PathPoint>
               </objects>
               <groups />
@@ -54720,7 +54725,7 @@
     <ModelVisualPreferences name="modelvisualpreferences">
       <ModelDisplayHints>
         <show_wrap_geometry>false</show_wrap_geometry>
-        <show_contact_geometry>true</show_contact_geometry>
+        <show_contact_geometry>false</show_contact_geometry>
         <show_path_geometry>true</show_path_geometry>
         <show_path_points>false</show_path_points>
         <show_markers>false</show_markers>

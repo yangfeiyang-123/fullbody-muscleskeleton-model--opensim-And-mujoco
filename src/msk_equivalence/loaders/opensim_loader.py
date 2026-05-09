@@ -169,6 +169,11 @@ class OpenSimModel:
         body = self.model.getBodySet().get(name)
         return vec3(body.getPositionInGround(self.state))
 
+    def body_rotation_matrix(self, name: str) -> np.ndarray:
+        body = self.model.getBodySet().get(name)
+        rot = body.getRotationInGround(self.state)
+        return np.array([[float(rot.get(i, j)) for j in range(3)] for i in range(3)], dtype=float)
+
     def marker_position(self, name: str) -> np.ndarray:
         marker = self.model.getMarkerSet().get(name)
         return vec3(marker.getLocationInGround(self.state))

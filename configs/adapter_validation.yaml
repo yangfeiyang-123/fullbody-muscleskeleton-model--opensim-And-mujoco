@@ -1,0 +1,47 @@
+# Runtime dynamics adapter validation config.
+#
+# This config supports the claim:
+# OpenSim model + explicit runtime adapter is equivalent to the MuJoCo reference
+# on the reported RL state/action distributions. It is not a pure .osim native
+# Level 4 claim.
+
+seed: 20260509
+ridge_regularization: 0.001
+
+random_activation:
+  seed: 20260509
+  vector_count: 80
+  active_muscles_per_vector: [5, 10]
+  include_single_muscle_basis: true
+  basis_activation: 1.0
+
+split:
+  seed: 20260509
+  train_fraction: 0.65
+  val_fraction: 0.15
+
+thresholds:
+  qacc_warning: 5.0
+  qacc_fail: 20.0
+  qacc_warning_rel: 0.05
+  qacc_fail_rel: 0.10
+  qacc_relative_abs_error_floor: 5.0
+  rollout_q_warning: 0.01
+  rollout_q_fail: 0.05
+  rollout_qdot_warning: 0.5
+  rollout_qdot_fail: 2.0
+
+rollout:
+  # Current adapter is calibrated at the matched neutral no-contact state.
+  # Longer state-dependent rollouts must be gated separately with RL rollout
+  # data after a state-dependent adapter is implemented.
+  horizon_s: 0.004
+  dt_s: 0.002
+  contact: disabled
+
+rl_distribution:
+  source: mujoco_policy
+  # Fill this with a MuJoCo policy rollout dataset before claiming RL
+  # distribution equivalence. The checker intentionally returns not evaluated
+  # when this is missing.
+  dataset:

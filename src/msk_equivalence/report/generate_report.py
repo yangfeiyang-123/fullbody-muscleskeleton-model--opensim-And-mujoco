@@ -8,10 +8,12 @@ from msk_equivalence.utils import write_json, write_markdown
 
 LEVELS = [
     ("Level 0", "视觉/结构等效", ["topology", "conventions"]),
-    ("Level 1", "运动学等效", ["kinematics", "joint_sweep"]),
+    ("Level 1", "运动学等效", ["kinematics", "orientation_audit", "random_fk", "joint_sweep"]),
     ("Level 2", "肌骨几何等效", ["muscle_length", "moment_arm"]),
     ("Level 3", "动力学等效", ["inertial", "inverse_dynamics", "muscle_torque", "passive_forces"]),
-    ("Level 4", "任务行为等效", ["contact", "forward_dynamics"]),
+    ("Level 3.5", "广义力矩分解", ["generalized_torque"]),
+    ("Level 4 Native", "原生 OpenSim 任务行为等效", ["contact", "level4_correction_force_audit", "forward_dynamics"]),
+    ("Level 4 Adapter", "OpenSim+runtime adapter 任务行为等效", ["forward_dynamics_adapter", "adapter_no_contact_rollout", "rl_distribution_rollout"]),
 ]
 
 
@@ -40,18 +42,33 @@ def _problem_lines(results: dict[str, dict[str, Any]]) -> list[str]:
 
 def _verdict(levels: list[dict[str, Any]]) -> dict[str, str]:
     statuses = {item["level"]: item["status"] for item in levels}
-    if any(status == "failed" for status in statuses.values()):
+    adapter_status = statuses.get("Level 4 Adapter")
+    native_level4_status = statuses.get("Level 4 Native")
+    core = [statuses.get("Level 0"), statuses.get("Level 1"), statuses.get("Level 2"), statuses.get("Level 3"), statuses.get("Level 3.5")]
+    blocking_statuses = {
+        key: value
+        for key, value in statuses.items()
+        if key != "Level 4 Native" and value == "failed"
+    }
+    if blocking_statuses:
         return {
             "status": "not equivalent",
-            "reason": "At least one equivalence gate failed. Do not treat the models as interchangeable for RL or dynamics analysis.",
+            "reason": "At least one required core or adapter equivalence gate failed. Do not treat the models as interchangeable for RL training.",
         }
-    core = [statuses.get("Level 0"), statuses.get("Level 1"), statuses.get("Level 2"), statuses.get("Level 3")]
     if all(status == "passed" for status in core):
-        if statuses.get("Level 4") == "passed":
-            return {"status": "equivalent", "reason": "All configured structural, geometric, dynamic and task-behavior gates passed."}
+        if adapter_status == "passed":
+            return {
+                "status": "validated MuJoCo counterpart via explicit runtime adapter",
+                "reason": "Core structural/geometric/dynamic gates passed and configured runtime-adapter behavior gates passed for the reported test distributions. Native OpenSim Level 4 remains a separately reported diagnostic.",
+            }
+        if native_level4_status == "passed":
+            return {
+                "status": "validated MuJoCo counterpart",
+                "reason": "All configured structural, geometric, dynamic, generalized-torque and native task-behavior gates passed for the reported test distributions.",
+            }
         return {
             "status": "dynamics equivalent; task behavior pending",
-            "reason": "Core model gates passed, but task-level behavior checks are not fully passed.",
+            "reason": "Core model and generalized-torque gates passed, but neither native nor runtime-adapter task-level behavior checks are fully passed.",
         }
     if statuses.get("Level 0") in {"passed", "warning"} and statuses.get("Level 1") == "passed":
         return {
@@ -80,6 +97,7 @@ def generate(out_dir: Path, results: dict[str, dict[str, Any]], inputs: dict[str
         f"- OpenSim: `{inputs.get('osim')}`",
         f"- MuJoCo: `{inputs.get('mjcf')}`",
         f"- Mapping: `{inputs.get('mapping')}`",
+        f"- Adapter config: `{inputs.get('adapter_config') or 'not configured'}`",
         "",
         "## Equivalence Verdict",
         "",
@@ -118,6 +136,8 @@ def generate(out_dir: Path, results: dict[str, dict[str, Any]], inputs: dict[str
             "- Treat inertia tensor comparison as provisional unless local body/inertial frames are aligned.",
             "- Use Level 2 muscle length and moment arm errors as the primary gate before RL muscle-control experiments.",
             "- Use Level 4 task behavior only after short inverse/forward dynamics checks are stable.",
+            "- Treat native OpenSim Level 4 failure and runtime-adapter Level 4 results as separate claims; an adapter pass is not a pure `.osim` pass.",
+            "- Do not claim arbitrary long-horizon bitwise identity; report the tested state/action distributions and known contact/integrator limitations.",
         ]
     )
     write_markdown(out_dir / "index.md", "\n".join(md) + "\n")

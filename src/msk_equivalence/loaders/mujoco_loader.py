@@ -141,6 +141,12 @@ class MuJoCoModel:
             raise KeyError(name)
         return np.array(self.data.xpos[body_id], dtype=float)
 
+    def body_rotation_matrix(self, name: str) -> np.ndarray:
+        body_id = self.mujoco.mj_name2id(self.model, self.mujoco.mjtObj.mjOBJ_BODY, name)
+        if body_id < 0:
+            raise KeyError(name)
+        return np.array(self.data.xmat[body_id], dtype=float).reshape(3, 3)
+
     def site_position(self, name: str) -> np.ndarray:
         site_id = self.mujoco.mj_name2id(self.model, self.mujoco.mjtObj.mjOBJ_SITE, name)
         if site_id < 0:
